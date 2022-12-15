@@ -1,0 +1,22 @@
+.edit-buton {
+  width: 24px;
+  height: 24px;
+  background: #000 url(../../images/pen.svg) no-repeat top 50% left 50%;
+  border: 1px solid #FFF;
+  margin-left: 25px;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.edit-buton:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 600px) {
+  .edit-buton {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+  }
+}
