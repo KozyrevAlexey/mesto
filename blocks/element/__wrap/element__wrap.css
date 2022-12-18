@@ -1,0 +1,7 @@
+.element__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 246px;
+  padding: 25px 20px 26px 21px;
+}
