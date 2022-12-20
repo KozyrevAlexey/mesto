@@ -11,3 +11,10 @@
   color: #FFF;
   cursor: pointer;
 }
+
+@media screen and (max-width: 540px) {
+  .popup__button-submit {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
