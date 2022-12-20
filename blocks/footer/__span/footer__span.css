@@ -1,0 +1,14 @@
+.footer__span {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #545454;
+}
+
+@media screen and (max-width: 400px) {
+  .footer__span {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
