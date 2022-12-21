@@ -1,4 +1,4 @@
-.popup__imput {
+.popup__input {
   max-width: 358px;
   min-height: 27px;
   padding: 0;
@@ -10,8 +10,5 @@
   line-height: 17px;
   color: #000;
   outline: none;
-}
-
-.popup__imput:not(:last-child) {
   margin-bottom: 30px;
 }

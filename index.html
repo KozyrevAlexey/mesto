@@ -17,60 +17,60 @@
   </header>
   <main class="main">
     <section class="profile">
-      <img src="./images/kusto.jpg" alt="Изображение улыбающегося Кусто на фоне моря" class="avatar">
+      <img src="./images/kusto.jpg" alt="Изображение улыбающегося Кусто на фоне моря" class="profile__avatar">
       <div class="profile-info">
         <div class="profile-info__wrap">
           <h1 class="profile-info__title">Жак-Ив Кусто</h1>
           <p class="profile-info__intro">Исследователь океана</p>
         </div>
-        <button class="edit-buton" type="button"></button>
+        <button class="profile__edit-buton" type="button"></button>
       </div>
-      <button class="add-button" type="button">
+      <button class="profile__add-button" type="button">
       </button>
     </section>
     <section class="elements">
-      <div class="element">
+      <article class="element">
         <img src="./images/karachaevsk.jpg" alt="Древний храм на фоне гор" class="element__img">
         <div class="element__wrap">
           <h2 class="element__title">Карачаевск</h2>
-          <button class="element__button"></button>
+          <button class="element__button" type="button"></button>
         </div>
-      </div>
-      <div class="element">
+      </article>
+      <article class="element">
         <img src="./images/elbrus.jpg" alt="Вид на гору в далеке и в дымке" class="element__img">
         <div class="element__wrap">
           <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button"></button>
+          <button class="element__button" type="button"></button>
         </div>
-      </div>
-      <div class="element">
+      </article>
+      <article class="element">
         <img src="./images/dombay.jpg" alt="Сосны на фоне крутых гор" class="element__img">
         <div class="element__wrap">
           <h2 class="element__title">Домбай</h2>
-          <button class="element__button"></button>
+          <button class="element__button" type="button"></button>
         </div>
-      </div>
-      <div class="element">
+      </article>
+      <article class="element">
         <img src="./images/elbrus.jpg" alt="Вид на гору в далеке и в дымке" class="element__img">
         <div class="element__wrap">
           <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button"></button>
+          <button class="element__button" type="button"></button>
         </div>
-      </div>
-      <div class="element">
+      </article>
+      <article class="element">
         <img src="./images/dombay.jpg" alt="Сосны на фоне крутых гор" class="element__img">
         <div class="element__wrap">
           <h2 class="element__title">Домбай</h2>
-          <button class="element__button"></button>
+          <button class="element__button" type="button"></button>
         </div>
-      </div>
-      <div class="element">
+      </article>
+      <article class="element">
         <img src="./images/karachaevsk.jpg" alt="Древний храм на фоне гор" class="element__img">
         <div class="element__wrap">
           <h2 class="element__title">Карачаево-Черкессия</h2>
-          <button class="element__button"></button>
+          <button class="element__button" type="button"></button>
         </div>
-      </div>
+      </article>
     </section>
   </main>
   <footer class="footer">
@@ -78,11 +78,11 @@
   </footer>
   <div class="popup">
     <div class="popup__container">
-      <button class="popup__button-close" type="button"></button>
+      <button aria-label="Close" class="popup__button-close" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form">
-        <input type="text" class="popup__imput popup__imput_name" placeholder="Укажите имя">
-        <input type="text" class="popup__imput popup__imput_job" placeholder="Укажите професcию">
+      <form class="popup__form" name="form-popup">
+        <input type="text" class="popup__input popup__imput_type_name" placeholder="Укажите имя" name="popup-name">
+        <input type="text" class="popup__input popup__imput_type_job" placeholder="Укажите професcию" name="popup-job">
         <button class="popup__button-submit" type="submit">Сохранить</button>
       </form>
     </div>
