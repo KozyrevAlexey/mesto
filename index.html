@@ -29,54 +29,6 @@
       </button>
     </section>
     <section class="elements">
-      <article class="element">
-        <button class="element__basket"></button>
-        <img src="./images/karachaevsk.jpg" alt="Древний храм на фоне гор" class="element__img">
-        <div class="element__wrap">
-          <h2 class="element__title">Карачаевск</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <button class="element__basket"></button>
-        <img src="./images/elbrus.jpg" alt="Вид на гору в далеке и в дымке" class="element__img">
-        <div class="element__wrap">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <button class="element__basket"></button>
-        <img src="./images/dombay.jpg" alt="Сосны на фоне крутых гор" class="element__img">
-        <div class="element__wrap">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <button class="element__basket"></button>
-        <img src="./images/elbrus.jpg" alt="Вид на гору в далеке и в дымке" class="element__img">
-        <div class="element__wrap">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <button class="element__basket"></button>
-        <img src="./images/dombay.jpg" alt="Сосны на фоне крутых гор" class="element__img">
-        <div class="element__wrap">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <button class="element__basket"></button>
-        <img src="./images/karachaevsk.jpg" alt="Древний храм на фоне гор" class="element__img">
-        <div class="element__wrap">
-          <h2 class="element__title">Карачаево-Черкессия</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
     </section>
   </main>
   <footer class="footer">
@@ -86,7 +38,7 @@
     <div class="popup__container">
       <button aria-label="Close" class="popup__button-close" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="form-profile">
+      <form class="popup__form popap__form_profile" name="form-profile">
         <input type="text" class="popup__input popup__input_type_name" placeholder="Укажите имя" name="popup-name">
         <input type="text" class="popup__input popup__input_type_job" placeholder="Укажите професcию" name="popup-job">
         <button class="popup__button-submit" type="submit">Сохранить</button>
@@ -95,18 +47,18 @@
   </div>
   <div class="popup popup__place">
     <div class="popup__container">
-      <button class="popup__button-close" type="button"></button>
+      <button aria-label="Close" class="popup__button-close" type="button"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form">
-        <input type="text" class="popup__imput popup__imput_name" placeholder="Название">
-        <input type="text" class="popup__imput popup__imput_job" placeholder="Ссылка на картинку">
+      <form class="popup__form popap__form_place" name="form-place">
+        <input type="text" class="popup__input popup__imput_title" placeholder="Название">
+        <input type="text" class="popup__input popup__imput_link" placeholder="Ссылка на картинку">
         <button class="popup__button-submit" type="submit">Создатьть</button>
       </form>
     </div>
   </div>
   <div class="popup popup__image">
     <div class="popup__container">
-      <button class="popup__button-close" type="button"></button>
+      <button aria-label="Close" class="popup__button-close" type="button"></button>
       <img src="#" alt="Увеличенная фотография региона" class="element__img">
       <h2 class="popup__title">###</h2>
     </div>
@@ -114,7 +66,7 @@
   <template id="template__card">
     <article class="element">
       <button class="element__basket"></button>
-      <img src="#" alt="Фотография региона местности" class="element__img">
+      <img  alt="Фотография региона местности" class="element__img">
       <div class="element__wrap">
         <h2 class="element__title"></h2>
         <button class="element__button"></button>
