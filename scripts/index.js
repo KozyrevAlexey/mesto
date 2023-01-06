@@ -23,7 +23,6 @@ const cardTemplate = document.querySelector('#template__card').content; //Най
 const cardOnline = document.querySelector('.elements'); //Найти раздел, куда будут добавлятся карточки
 
 
-
 //Добавление карточек "из коробки"
 const initialCards = [
   {
@@ -52,37 +51,30 @@ const initialCards = [
   }
 ];
 
-
-
 //Функция создания карточки
 const allCard = (name, link) => {
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true); // клонируем содержимое тега template
-  const cardTitle = cardElement.querySelector('.element__title') //Найти в шаблоне заголовок
-  const cardPhoto = cardElement.querySelector('.element__img'); //Найти в шаблоне фотографию
+  const cardElementTitle = cardElement.querySelector('.element__title'); //Найти в шаблоне заголовок
+  const cardElementPhoto = cardElement.querySelector('.element__img'); //Найти в шаблоне фотографию
+  const cardElementLike = cardElement.querySelector('.element__button'); // Найти в шаблоне кнопку лайк-дизлайк
 
 
-  cardTitle.textContent = name; //Присвоить значение name заголовку
-  cardPhoto.src = link; //Присвоить значение link ссылке на картинку
+  cardElementTitle.textContent = name; //Присвоить значение name заголовку
+  cardElementPhoto.src = link; //Присвоить значение link ссылке на картинку
+
+  //Функция лайк-дизлайка карточки
+  cardElementLike.addEventListener('click', (evt) => {
+    evt.target.classList.toggle('element__button_active');
+  });
+
 
   return cardElement //Отобразить карточку на странице
-}
+};
 
 //Создание карточек из массива
 initialCards.forEach((element) => {
   cardOnline.append(allCard(element.name, element.link));
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //Функция открытия popup с данными name и job указанных на странице
@@ -124,4 +116,3 @@ popupOpenAdd.addEventListener('click', openPopupp);
 popupClose.addEventListener('click', closePopup);
 // popupElement.addEventListener('click', closePopupClickOverlay);
 popupFormProfile.addEventListener('submit', handleFormSubmit);
-
