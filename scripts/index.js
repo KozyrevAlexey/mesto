@@ -15,13 +15,11 @@ const popupFormPlace = popupPlace.querySelector('.popap__form_place'); //Най�
 //Popup открытия просмотра изображения
 const popupImagi = document.querySelector('.popup__image'); //Найти popup открытия просмотра увеличенного изображения
 
-
 const popupClose = document.querySelector('.popup__button-close'); //Найти кнопку закрытия Popup
 
 // Добавление карточек
 const cardTemplate = document.querySelector('#template__card').content; //Найти шаблон карточки для добавления
 const cardOnline = document.querySelector('.elements'); //Найти раздел, куда будут добавлятся карточки
-
 
 //Добавление карточек "из коробки"
 const initialCards = [
@@ -51,31 +49,34 @@ const initialCards = [
   }
 ];
 
-//Функция создания карточки
+//Функция создания карточки с возможностью выполнить лайк-дизлайк, удаление карточки
 const allCard = (name, link) => {
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true); // клонируем содержимое тега template
   const cardElementTitle = cardElement.querySelector('.element__title'); //Найти в шаблоне заголовок
   const cardElementPhoto = cardElement.querySelector('.element__img'); //Найти в шаблоне фотографию
   const cardElementLike = cardElement.querySelector('.element__button'); // Найти в шаблоне кнопку лайк-дизлайк
-
+  const cardElementResetButton = cardElement.querySelector('.element__basket');// Найти в шаблоне кнопку удаления
 
   cardElementTitle.textContent = name; //Присвоить значение name заголовку
   cardElementPhoto.src = link; //Присвоить значение link ссылке на картинку
 
   //Функция лайк-дизлайка карточки
   cardElementLike.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('element__button_active');
+    evt.target.classList.toggle('element__button_active'); //Изменяем выбраный элемент по клику на кнопку лайк
   });
 
+  //Функция удаления карточки
+  // cardElementResetButton.addEventListener('click', (evt) => {
+  //   evt.target.closest('.element').remove()  //Удаляем выбранный элемент по клику на карточку
+  // });
 
   return cardElement //Отобразить карточку на странице
 };
 
 //Создание карточек из массива
 initialCards.forEach((element) => {
-  cardOnline.append(allCard(element.name, element.link));
+  cardOnline.append(allCard(element.name, element.link)); //Преобразовываем массив в строчный элемент
 });
-
 
 //Функция открытия popup с данными name и job указанных на странице
 const openPopup = function () {
@@ -93,14 +94,14 @@ const closePopup = function () {
   popupProfile.classList.remove('popup_opened');
 }
 
-
-
 //Функция закрытия при нажатии на overlay. Сейчас не используется
 // const closePopupClickOverlay = function (event) {
 //   if (event.target === event.currentTarget) {
 //     closePopup();
 //   }
 // }
+
+
 
 //Функция сохранения внесенных в формы popup изменений при закрытии окна
 function handleFormSubmit(evt) {
@@ -111,8 +112,8 @@ function handleFormSubmit(evt) {
 }
 
 //Слушатели событий
-popupOpenEdit.addEventListener('click', openPopup);
-popupOpenAdd.addEventListener('click', openPopupp);
-popupClose.addEventListener('click', closePopup);
+popupOpenEdit.addEventListener('click', openPopup); //Отслеживаем клик открытия окна редактирования профиля
+popupOpenAdd.addEventListener('click', openPopupp); //Отслеживаем клик открытия окна добавления карточки
+popupClose.addEventListener('click', closePopup); //Отслеживаем клик закрытия Popup
 // popupElement.addEventListener('click', closePopupClickOverlay);
-popupFormProfile.addEventListener('submit', handleFormSubmit);
+popupFormProfile.addEventListener('submit', handleFormSubmit); //Отслеживаем сохранение внесенных данных в изменение профиля
