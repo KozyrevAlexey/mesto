@@ -124,5 +124,6 @@ popupOpenAdd.addEventListener('click', () => {                                  
 //     closePopup(popupProfile);
 //   }
 // }
+
 //Слушатели событий
 //popupElement.addEventListener('click', closePopupClickOverlay); //Отслеживаем действие по клику на Overlay
