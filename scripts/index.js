@@ -1,7 +1,7 @@
 //Popup редактирования профиля
 const popupProfile = document.querySelector('.popup_type_profile');                         // Найти popup редактирования профиля
 const popupOpenEdit = document.querySelector('.profile__edit-buton');                   // Найти кнопку открытия редактирования профиля
-const popupFormProfile = popupProfile.querySelector('.popap__form_type_profile');            // Найти форму popup изменения профиля
+const popupFormProfile = popupProfile.querySelector('.popup__form_type_profile');            // Найти форму popup изменения профиля
 const profileName = document.querySelector('.profile-info__title');                     // Найти данные - name на странице
 const profileJob = document.querySelector('.profile-info__intro');                      // Найти данные - job на странице
 const inputName = document.querySelector('.popup__input_type_name');                    // Найти поле ввода - name в форме редактирования профиля
@@ -10,7 +10,7 @@ const inputJob = document.querySelector('.popup__input_type_job');              
 //Popup редактирования карточек региона
 const popupPlace = document.querySelector('.popup_type_place');                             // Найти popup редактирования карточек
 const popupOpenAdd = document.querySelector('.profile__add-button');                    // Найти кнопку открытия редактирования карточек
-const popupFormPlace = popupPlace.querySelector('.popap__form_type_place');                  // Найти форму popup изменения карточек
+const popupFormPlace = popupPlace.querySelector('.popup__form_type_place');                  // Найти форму popup изменения карточек
 const popupFormTitle = popupPlace.querySelector('.popup__imput_type_title');                 // Найти поле ввода - название региона в форме добавления карточки
 const popupFormLink = popupPlace.querySelector('.popup__imput_type_link');                   // Найти поле ввода - ссылки на фото в форме добавления карточки
 
