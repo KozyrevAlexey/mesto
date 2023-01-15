@@ -51,7 +51,7 @@
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form popup__form_type_place" name="form-place">
         <input type="text" class="popup__input popup__input_type_title" placeholder="Название">
-        <input type="text" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку">
+        <input type="url" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку">
         <button class="popup__button-submit" type="submit">Создатьть</button>
       </form>
     </div>
@@ -59,20 +59,21 @@
   <div class="popup popup_type_image">
     <div class="popup__container popup__container_type_image">
       <button aria-label="Close" class="popup__button-close" type="button"></button>
-      <img  alt="Увеличенная фотография региона" class="popup__img" src="#">
+      <img  alt="#" class="popup__img" src="#">
       <h2 class="popup__name"></h2>
     </div>
   </div>
-  <template class="template__card">
+  <template class="template-card">
     <article class="element">
       <button class="element__basket"></button>
-      <img  alt="Фотография региона местности" class="element__img">
+      <img  alt="#" class="element__img">
       <div class="element__wrap">
         <h2 class="element__title"></h2>
         <button class="element__button"></button>
       </div>
     </article>
   </template>
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 
