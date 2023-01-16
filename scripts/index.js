@@ -1,40 +1,40 @@
 /** Popup редактирования профиля */
-const popupProfile = document.querySelector('.popup_type_profile');                         // Найти popup редактирования профиля
+const popupProfile = document.querySelector('.popup_type_profile');                     // Найти popup редактирования профиля
 const popupOpenEdit = document.querySelector('.profile__edit-buton');                   // Найти кнопку открытия редактирования профиля
-const popupFormProfile = popupProfile.querySelector('.popup__form_type_profile');            // Найти форму popup изменения профиля
+const popupFormProfile = popupProfile.querySelector('.popup__form_type_profile');       // Найти форму popup изменения профиля
 const profileName = document.querySelector('.profile-info__title');                     // Найти данные - name на странице
 const profileJob = document.querySelector('.profile-info__intro');                      // Найти данные - job на странице
 const inputName = document.querySelector('.popup__input_type_name');                    // Найти поле ввода - name в форме редактирования профиля
 const inputJob = document.querySelector('.popup__input_type_job');                      // Найти поле ввода - job в форме редактирования профиля
 
 /** Popup редактирования карточек региона */
-const popupPlace = document.querySelector('.popup_type_place');                             // Найти popup редактирования карточек
-const popupOpenAdd = document.querySelector('.profile__add-button');                    // Найти кнопку открытия редактирования карточек
-const popupFormPlace = popupPlace.querySelector('.popup__form_type_place');                  // Найти форму popup изменения карточек
-const popupFormTitle = popupPlace.querySelector('.popup__input_type_title');                 // Найти поле ввода - название региона в форме добавления карточки
-const popupFormLink = popupPlace.querySelector('.popup__input_type_link');                   // Найти поле ввода - ссылки на фото в форме добавления карточки
+const popupPlace = document.querySelector('.popup_type_place');                          // Найти popup редактирования карточек
+const popupOpenAdd = document.querySelector('.profile__add-button');                     // Найти кнопку открытия редактирования карточек
+const popupFormPlace = popupPlace.querySelector('.popup__form_type_place');              // Найти форму popup изменения карточек
+const popupFormTitle = popupPlace.querySelector('.popup__input_type_title');             // Найти поле ввода - название региона в форме добавления карточки
+const popupFormLink = popupPlace.querySelector('.popup__input_type_link');               // Найти поле ввода - ссылки на фото в форме добавления карточки
 
 /** Popup открытия просмотра изображения */
-const popupImage = document.querySelector('.popup_type_image');                             // Найти popup открытия просмотра увеличенного изображения
-const elementImage = document.querySelector('.popup__img');                             // Найти изображение
-const elementTitle = document.querySelector('.popup__name');                            // Найти описание региона
+const popupImage = document.querySelector('.popup_type_image');                           // Найти popup открытия просмотра увеличенного изображения
+const elementImage = document.querySelector('.popup__img');                               // Найти изображение
+const elementTitle = document.querySelector('.popup__name');                              // Найти описание региона
 
 /** Кнопка закрытия Popup */
-const popupCloseList = document.querySelectorAll('.popup__button-close');                   // Найти ВСЕ кнопки закрытия Popup
+const popupCloseList = document.querySelectorAll('.popup__button-close');                  // Найти ВСЕ кнопки закрытия Popup
 
 /** Добавление карточек */
-const cardTemplate = document.querySelector('.template-card').content;                 // Найти шаблон карточки для добавления
-const cardsContainer = document.querySelector('.elements');                                 // Найти раздел, куда будут добавлятся карточки
+const cardTemplate = document.querySelector('.template-card').content;                     // Найти шаблон карточки для добавления
+const cardsContainer = document.querySelector('.elements');                                // Найти раздел, куда будут добавлятся карточки
 
 /** Функция лайк-дизлайка карточки */
-const handleLikeButton = (cardData) => {
-  cardData.addEventListener('click', (evt) => {
+const bindCardLikeEventListener = (buttonLike) => {
+  buttonLike.addEventListener('click', (evt) => {
     evt.target.classList.toggle('element__button_active');
   });
 };
 
 /** Функция удаления карточки */
-const handleDelButton = (cardData) => {
+const bindCardDeleteEventListener = (cardData) => {
   cardData.addEventListener('click', (evt) => {
     evt.target.closest('.element').remove();
   });
@@ -48,23 +48,23 @@ const createCard = (cardData) => {
   const cardElementLike = cardElement.querySelector('.element__button');                   // Найти кнопку нравится-ненравится
   const cardElementDel = cardElement.querySelector('.element__basket');                    // Найти кнопку удаления карточе
 
-  cardElementTitle.textContent = cardData.name;                                                 // Присвоить значение name заголовку
-  cardElementPhoto.src = cardData.link;                                                         // Присвоить значение link ссылке на картинку
-  cardElementPhoto.alt = cardData.alt;                                                         // Присвоить описание картинке
+  cardElementTitle.textContent = cardData.name;                                            // Присвоить значение name заголовку
+  cardElementPhoto.src = cardData.link;                                                    // Присвоить значение link ссылке на картинку
+  cardElementPhoto.alt = cardData.alt;                                                     // Присвоить описание картинке
 
-  handlePreviewImage(cardElementPhoto);                                                     // Открыть popup просмотра изображения карточки
-  handleLikeButton(cardElementLike);                                                        // Отметить в карточке нравится - ненравится
-  handleDelButton(cardElementDel);                                                         // Удалить карточку
+  bindCardPreviewEventListener(cardElementPhoto);                                          // Открыть popup просмотра изображения карточки
+  bindCardLikeEventListener(cardElementLike);                                              // Отметить в карточке нравится - ненравится
+  bindCardDeleteEventListener(cardElementDel);                                             // Удалить карточку
 
-  return cardElement;                                                                        // Отобразить карточку на странице
+  return cardElement;                                                                      // Отобразить карточку на странице
 };
 
 /** Функция открытия просмотра изображения карточки */
-const handlePreviewImage = (cardData) => {
-  cardData.addEventListener('click', (evt) => {
+const bindCardPreviewEventListener = (cardImageElement) => {
+  cardImageElement.addEventListener('click', (evt) => {
     openPopup(popupImage);
-    elementImage.src = evt.target.closest('.element__img').src;
-    elementImage.alt = evt.target.closest('.element__img').alt;
+    elementImage.src = cardImageElement.src;
+    elementImage.alt = cardImageElement.alt;
     elementTitle.textContent = evt.target.closest('.element').textContent;
   });
 };
