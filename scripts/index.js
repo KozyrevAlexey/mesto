@@ -22,6 +22,9 @@ const elementTitle = document.querySelector('.popup__name');                    
 /** Кнопка закрытия Popup */
 const popupCloseList = document.querySelectorAll('.popup__button-close');                  // Найти ВСЕ кнопки закрытия Popup
 
+/** Поле закрытия Popup при нажатии на Overlay*/
+const popupCloseClickOverlay = document.querySelectorAll('.popup');                        // Найти границы Overlay
+
 /** Добавление карточек */
 const cardTemplate = document.querySelector('.template-card').content;                     // Найти шаблон карточки для добавления
 const cardsContainer = document.querySelector('.elements');                                // Найти раздел, куда будут добавлятся карточки
@@ -107,6 +110,16 @@ popupCloseList.forEach((item) => {
   });
 });
 
+/** Закрытие всех Popup при нажатии на Overlay */
+popupCloseClickOverlay.forEach((item) => {
+  item.addEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) {
+      const overlayClosest = evt.target.closest('.popup');
+      closePopup(overlayClosest);
+    };
+  });
+});
+
 /** Функция открытия Popup добавления карточки местности */
 popupOpenAdd.addEventListener('click', () => {
   openPopup(popupPlace);
@@ -127,4 +140,3 @@ popupFormPlace.addEventListener('submit', (evt) => {
 const renderCard = (card) => {
   cardsContainer.prepend(createCard(card));
 };
-
