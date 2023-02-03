@@ -22,8 +22,8 @@ const elementTitle = document.querySelector('.popup__name');                    
 /** Кнопка закрытия Popup */
 const popupCloseList = document.querySelectorAll('.popup__button-close');                  // Найти ВСЕ кнопки закрытия Popup
 
-/** Поле закрытия Popup при нажатии на Overlay*/
-const popupCloseClickOverlay = document.querySelectorAll('.popup');                        // Найти границы Overlay
+/** Границы окна Popup */
+const popupClosest = document.querySelectorAll('.popup');                                  // Найти границы окна при нажатии на Esc и Overlay
 
 /** Добавление карточек */
 const cardTemplate = document.querySelector('.template-card').content;                     // Найти шаблон карточки для добавления
@@ -59,7 +59,7 @@ const createCard = (cardData) => {
   bindCardLikeEventListener(cardElementLike);                                              // Отметить в карточке нравится - ненравится
   bindCardDeleteEventListener(cardElementDel);                                             // Удалить карточку
 
-  return cardElement;                                                                      // Отобразить карточку на странице
+  return cardElement;
 };
 
 /** Функция открытия просмотра изображения карточки */
@@ -80,12 +80,23 @@ initialCards.forEach((cardData) => {
 /** Общая функция открытия Popup */
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', popupCloseEscapeKey);
 };
 
 /** Общая функция закрытия Popup */
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', popupCloseEscapeKey);
 };
+
+/**Функция закрытия по клавише Esc */
+const popupCloseEscapeKey = (evt) => {
+  if (evt.key === 'Escape'){
+    popupClosest.forEach((popup) => {
+      closePopup(popup);
+    })
+  }
+}
 
 /** Функция открытия Popup редактирования профиля c указанными на странице данными */
 popupOpenEdit.addEventListener('click', () => {
@@ -111,7 +122,7 @@ popupCloseList.forEach((item) => {
 });
 
 /** Закрытие всех Popup при нажатии на Overlay */
-popupCloseClickOverlay.forEach((item) => {
+popupClosest.forEach((item) => {
   item.addEventListener('click', (evt) => {
     if (evt.target === evt.currentTarget) {
       const overlayClosest = evt.target.closest('.popup');
