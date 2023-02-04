@@ -66,6 +66,7 @@ const createCard = (cardData) => {
 const bindCardPreviewEventListener = (cardImageElement) => {
   cardImageElement.addEventListener('click', (evt) => {
     openPopup(popupImage);
+
     elementImage.src = cardImageElement.src;
     elementImage.alt = cardImageElement.alt;
     elementTitle.textContent = evt.target.closest('.element').textContent;
@@ -81,6 +82,7 @@ initialCards.forEach((cardData) => {
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', popupCloseEscapeKey);
+  document.body.style.overflowY = 'hidden';
 };
 
 /** Общая функция закрытия Popup */
@@ -108,6 +110,7 @@ popupOpenEdit.addEventListener('click', () => {
 /** Функция сохранения внесенных в формы popup изменений при закрытии окна */
 popupFormProfile.addEventListener('submit', (evt) => {
   evt.preventDefault();
+
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
   closePopup(popupProfile);
@@ -116,8 +119,8 @@ popupFormProfile.addEventListener('submit', (evt) => {
 /** Закрытие всех Popup при нажатии на крестик */
 popupCloseList.forEach((item) => {
   item.addEventListener('click', (evt) => {
-    const popupClosest = evt.target.closest('.popup');
-    closePopup(popupClosest);
+    const popupClosestCross = popupAddClosest(evt);
+    closePopup(popupClosestCross);
   });
 });
 
@@ -125,8 +128,8 @@ popupCloseList.forEach((item) => {
 popupClosest.forEach((item) => {
   item.addEventListener('click', (evt) => {
     if (evt.target === evt.currentTarget) {
-      const overlayClosest = evt.target.closest('.popup');
-      closePopup(overlayClosest);
+      const popupClosestOverlay = popupAddClosest(evt);
+      closePopup(popupClosestOverlay);
     };
   });
 });
@@ -134,15 +137,19 @@ popupClosest.forEach((item) => {
 /** Функция открытия Popup добавления карточки местности */
 popupOpenAdd.addEventListener('click', () => {
   openPopup(popupPlace);
+  popupFormTitle.value = '';
+  popupFormLink.value = '';
 });
 
 /** Функция сохранения внесенных в формы popup данных (название региона и ссылку на фото) при закрытии окна */
 popupFormPlace.addEventListener('submit', (evt) => {
   evt.preventDefault();
+
   renderCard({
     name: popupFormTitle.value,
     link: popupFormLink.value,
   });
+
   evt.target.reset();
   closePopup(popupPlace);
 });
@@ -151,3 +158,9 @@ popupFormPlace.addEventListener('submit', (evt) => {
 const renderCard = (card) => {
   cardsContainer.prepend(createCard(card));
 };
+
+/**Функция возвращения события */
+const popupAddClosest = (evt) => {
+  return evt.target.closest('.popup');
+}
+
