@@ -96,6 +96,7 @@ const openPopup = (popup) => {
 /** Общая функция закрытия Popup */
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+
   document.removeEventListener('keydown', handleEscClosePopup);
   document.body.style.overflowY = 'scroll';
 };
