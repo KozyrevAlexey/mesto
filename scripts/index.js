@@ -1,3 +1,9 @@
+/** Объект валидации */
+const objectValidation = {
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+}
+
 /** Popup редактирования профиля */
 const popupProfile = document.querySelector('.popup_type_profile');                     // Найти popup редактирования профиля
 const popupOpenEdit = document.querySelector('.profile__edit-buton');                   // Найти кнопку открытия редактирования профиля
@@ -100,11 +106,21 @@ const popupCloseEscapeKey = (evt) => {
   }
 }
 
+/**Функция блокировки активной кнопки Submit при открытии Popup*/
+const resetValidationStyle = (objectValidation) => {
+  const buttonSubmint = document.querySelectorAll(objectValidation.submitButtonSelector);     //Находим все кнопки submit
+
+  buttonSubmint.forEach((button) => {
+    button.classList.add(objectValidation.inactiveButtonClass);
+  })
+  }
+
 /** Функция открытия Popup редактирования профиля c указанными на странице данными */
 popupOpenEdit.addEventListener('click', () => {
   openPopup(popupProfile);
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
+  resetValidationStyle(objectValidation);
 });
 
 /** Функция сохранения внесенных в формы popup изменений при закрытии окна */
@@ -113,6 +129,7 @@ popupFormProfile.addEventListener('submit', (evt) => {
 
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
+
   closePopup(popupProfile);
 });
 
@@ -137,6 +154,8 @@ popupClosest.forEach((item) => {
 /** Функция открытия Popup добавления карточки местности */
 popupOpenAdd.addEventListener('click', () => {
   openPopup(popupPlace);
+  resetValidationStyle(objectValidation);
+
   popupFormTitle.value = '';
   popupFormLink.value = '';
 });
@@ -163,4 +182,3 @@ const renderCard = (card) => {
 const popupAddClosest = (evt) => {
   return evt.target.closest('.popup');
 }
-

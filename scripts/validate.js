@@ -1,15 +1,3 @@
-// включение валидации вызовом enableValidation
-// все настройки передаются при вызове
-
-// enableValidation({
-//   formSelector: '.popup__form',
-//   inputSelector: '.popup__input',
-//   submitButtonSelector: '.popup__button',
-//   inactiveButtonClass: 'popup__button_disabled',
-//   inputErrorClass: 'popup__input_type_error',
-//   errorClass: 'popup__error_visible'
-// });
-
 /** Объект валидации */
 const formValidationConfig = {
   formSelector: '.popup__form',
@@ -17,6 +5,7 @@ const formValidationConfig = {
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
 }
 
 /**Функция отключения перезагрузки */
@@ -65,7 +54,7 @@ const toggleButton = (form, config) => {
 
 /** Объявляю функцию слушателей всех инпутов */
 const addInputListners = (form, config) => {
-  const inputList = Array.from(form.querySelectorAll(config.inputSelector));              //находим все импуты
+  const inputList = Array.from(form.querySelectorAll(config.inputSelector));
 
   inputList.forEach(function (item) {
     item.addEventListener('input', (evt) => {
