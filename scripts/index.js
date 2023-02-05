@@ -1,3 +1,11 @@
+/** Объект валидации */
+const objectValidation = {
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputSelector: '.popup__input',
+  inputErrorClass: 'popup__input_type_error',
+}
+
 /** Popup редактирования профиля */
 const popupProfile = document.querySelector('.popup_type_profile');                     // Найти popup редактирования профиля
 const popupOpenEdit = document.querySelector('.profile__edit-buton');                   // Найти кнопку открытия редактирования профиля
@@ -66,6 +74,7 @@ const createCard = (cardData) => {
 const bindCardPreviewEventListener = (cardImageElement) => {
   cardImageElement.addEventListener('click', (evt) => {
     openPopup(popupImage);
+
     elementImage.src = cardImageElement.src;
     elementImage.alt = cardImageElement.alt;
     elementTitle.textContent = evt.target.closest('.element').textContent;
@@ -81,6 +90,7 @@ initialCards.forEach((cardData) => {
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', popupCloseEscapeKey);
+  document.body.style.overflowY = 'hidden';
 };
 
 /** Общая функция закрытия Popup */
@@ -94,30 +104,49 @@ const popupCloseEscapeKey = (evt) => {
   if (evt.key === 'Escape'){
     popupClosest.forEach((popup) => {
       closePopup(popup);
-    })
-  }
-}
+    });
+  };
+};
+
+/**Функция сброса общих стилей при открытии Popup*/
+const resetValidationStyle = (objectValidation) => {
+  const buttonSubmint = document.querySelectorAll(objectValidation.submitButtonSelector);
+  const inputList = document.querySelectorAll(objectValidation.inputSelector);
+
+  inputList.forEach((input) => {
+    input.classList.remove(objectValidation.inputErrorClass);
+    input.nextElementSibling.textContent = '';
+  });
+
+  buttonSubmint.forEach((button) => {
+    button.classList.add(objectValidation.inactiveButtonClass);
+  });
+  };
+
 
 /** Функция открытия Popup редактирования профиля c указанными на странице данными */
 popupOpenEdit.addEventListener('click', () => {
   openPopup(popupProfile);
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
+  resetValidationStyle(objectValidation);
 });
 
 /** Функция сохранения внесенных в формы popup изменений при закрытии окна */
 popupFormProfile.addEventListener('submit', (evt) => {
   evt.preventDefault();
+
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
+
   closePopup(popupProfile);
 });
 
 /** Закрытие всех Popup при нажатии на крестик */
 popupCloseList.forEach((item) => {
   item.addEventListener('click', (evt) => {
-    const popupClosest = evt.target.closest('.popup');
-    closePopup(popupClosest);
+    const popupClosestCross = popupAddClosest(evt);
+    closePopup(popupClosestCross);
   });
 });
 
@@ -125,8 +154,8 @@ popupCloseList.forEach((item) => {
 popupClosest.forEach((item) => {
   item.addEventListener('click', (evt) => {
     if (evt.target === evt.currentTarget) {
-      const overlayClosest = evt.target.closest('.popup');
-      closePopup(overlayClosest);
+      const popupClosestOverlay = popupAddClosest(evt);
+      closePopup(popupClosestOverlay);
     };
   });
 });
@@ -134,15 +163,21 @@ popupClosest.forEach((item) => {
 /** Функция открытия Popup добавления карточки местности */
 popupOpenAdd.addEventListener('click', () => {
   openPopup(popupPlace);
+  resetValidationStyle(objectValidation);
+
+  popupFormTitle.value = '';
+  popupFormLink.value = '';
 });
 
 /** Функция сохранения внесенных в формы popup данных (название региона и ссылку на фото) при закрытии окна */
 popupFormPlace.addEventListener('submit', (evt) => {
   evt.preventDefault();
+
   renderCard({
     name: popupFormTitle.value,
     link: popupFormLink.value,
   });
+
   evt.target.reset();
   closePopup(popupPlace);
 });
@@ -150,4 +185,9 @@ popupFormPlace.addEventListener('submit', (evt) => {
 /** Функция добавления новой карточки в начало блока с данными из PopUp добавления новой карточки местности */
 const renderCard = (card) => {
   cardsContainer.prepend(createCard(card));
+};
+
+/**Функция возвращения события */
+const popupAddClosest = (evt) => {
+  return evt.target.closest('.popup');
 };
