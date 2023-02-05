@@ -97,6 +97,7 @@ const openPopup = (popup) => {
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', popupCloseEscapeKey);
+  document.body.style.overflowY = 'scroll';
 };
 
 /**Функция закрытия по клавише Esc */
