@@ -90,14 +90,12 @@ initialCards.forEach((cardData) => {
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscClosePopup);
-  document.body.style.overflowY = 'hidden';
 };
 
 /** Общая функция закрытия Popup */
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleEscClosePopup);
-  document.body.style.overflowY = 'scroll';
 };
 
 /**Функция закрытия по клавише Esc */
