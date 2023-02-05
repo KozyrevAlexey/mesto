@@ -2,6 +2,8 @@
 const objectValidation = {
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
+  inputSelector: '.popup__input',
+  inputErrorClass: 'popup__input_type_error',
 }
 
 /** Popup редактирования профиля */
@@ -102,18 +104,25 @@ const popupCloseEscapeKey = (evt) => {
   if (evt.key === 'Escape'){
     popupClosest.forEach((popup) => {
       closePopup(popup);
-    })
-  }
-}
+    });
+  };
+};
 
-/**Функция блокировки активной кнопки Submit при открытии Popup*/
+/**Функция сброса общих стилей при открытии Popup*/
 const resetValidationStyle = (objectValidation) => {
-  const buttonSubmint = document.querySelectorAll(objectValidation.submitButtonSelector);     //Находим все кнопки submit
+  const buttonSubmint = document.querySelectorAll(objectValidation.submitButtonSelector);
+  const inputList = document.querySelectorAll(objectValidation.inputSelector);
+
+  inputList.forEach((input) => {
+    input.classList.remove(objectValidation.inputErrorClass);
+    input.nextElementSibling.textContent = '';
+  });
 
   buttonSubmint.forEach((button) => {
     button.classList.add(objectValidation.inactiveButtonClass);
-  })
-  }
+  });
+  };
+
 
 /** Функция открытия Popup редактирования профиля c указанными на странице данными */
 popupOpenEdit.addEventListener('click', () => {
@@ -181,4 +190,4 @@ const renderCard = (card) => {
 /**Функция возвращения события */
 const popupAddClosest = (evt) => {
   return evt.target.closest('.popup');
-}
+};

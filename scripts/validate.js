@@ -65,7 +65,3 @@ const addInputListners = (form, config) => {
 
 /** Вызываю функцию валидации */
 enableValidation(formValidationConfig);
-
-
-
-
