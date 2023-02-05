@@ -8,17 +8,14 @@ const formValidationConfig = {
   errorClass: 'popup__error_visible'
 }
 
-/**Функция отключения перезагрузки */
-const disableSubmit = (evt) => {
-  evt.preventDefault();
-}
-
 /**Функция валидации всех форм */
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
 
   formList.forEach((form) => {
-    form.addEventListener('submit', disableSubmit);
+    form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
     form.addEventListener('input', () => {
       toggleButton(form, config);
     });
