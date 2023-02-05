@@ -89,40 +89,50 @@ initialCards.forEach((cardData) => {
 /** Общая функция открытия Popup */
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', popupCloseEscapeKey);
+  document.addEventListener('keydown', handleEscClosePopup);
   document.body.style.overflowY = 'hidden';
 };
 
 /** Общая функция закрытия Popup */
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', popupCloseEscapeKey);
+  document.removeEventListener('keydown', handleEscClosePopup);
+  document.body.style.overflowY = 'scroll';
 };
 
 /**Функция закрытия по клавише Esc */
-const popupCloseEscapeKey = (evt) => {
-  if (evt.key === 'Escape'){
-    popupClosest.forEach((popup) => {
-      closePopup(popup);
-    });
+const handleEscClosePopup = (evt) => {
+  if (evt.key === 'Escape') {
+    const popupClose = document.querySelector('.popup_opened');
+    closePopup(popupClose);
   };
 };
 
 /**Функция сброса общих стилей при открытии Popup*/
 const resetValidationStyle = (objectValidation) => {
-  const buttonSubmint = document.querySelectorAll(objectValidation.submitButtonSelector);
+  disableSubmitInput(objectValidation);
+  disableSubmitButton(objectValidation);
+};
+
+/** Функция валидации строки ввода */
+const disableSubmitInput = (objectValidation) => {
   const inputList = document.querySelectorAll(objectValidation.inputSelector);
 
   inputList.forEach((input) => {
     input.classList.remove(objectValidation.inputErrorClass);
     input.nextElementSibling.textContent = '';
   });
+}
+
+/** Функция валидации кнопки Submit */
+const disableSubmitButton = (objectValidation) => {
+  const buttonSubmint = document.querySelectorAll(objectValidation.submitButtonSelector);
 
   buttonSubmint.forEach((button) => {
     button.classList.add(objectValidation.inactiveButtonClass);
+    button.setAttribute('disabled', '');
   });
-  };
-
+}
 
 /** Функция открытия Popup редактирования профиля c указанными на странице данными */
 popupOpenEdit.addEventListener('click', () => {
