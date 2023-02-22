@@ -1,3 +1,6 @@
+import { FormValidator } from './FormValidator.js';
+import { Card } from './Card.js';
+
 /** Объект валидации */
 const objectValidation = {
   submitButtonSelector: '.popup__button',
@@ -53,21 +56,30 @@ const bindCardDeleteEventListener = (cardData) => {
 
 /** Функция создания карточки */
 const createCard = (cardData) => {
-  const cardElement = cardTemplate.cloneNode(true);                                        // Клонировать содержимое тега template
-  const cardElementTitle = cardElement.querySelector('.element__title');                   // Найти в шаблоне заголовок
-  const cardElementPhoto = cardElement.querySelector('.element__img');                     // Найти в шаблоне фотографию
-  const cardElementLike = cardElement.querySelector('.element__button');                   // Найти кнопку нравится-ненравится
-  const cardElementDel = cardElement.querySelector('.element__basket');                    // Найти кнопку удаления карточе
+  const card = new Card(cardData, '.template-card');
 
-  cardElementTitle.textContent = cardData.name;                                            // Присвоить значение name заголовку
-  cardElementPhoto.src = cardData.link;                                                    // Присвоить значение link ссылке на картинку
-  cardElementPhoto.alt = cardData.alt;                                                     // Присвоить описание картинке
 
-  bindCardPreviewEventListener(cardElementPhoto);                                          // Открыть popup просмотра изображения карточки
-  bindCardLikeEventListener(cardElementLike);                                              // Отметить в карточке нравится - ненравится
-  bindCardDeleteEventListener(cardElementDel);                                             // Удалить карточку
+  // const cardElement = cardTemplate.cloneNode(true);                                        // Клонировать содержимое тега template
+  // const cardElementTitle = cardElement.querySelector('.element__title');                   // Найти в шаблоне заголовок
+  // const cardElementPhoto = cardElement.querySelector('.element__img');                     // Найти в шаблоне фотографию
+  // const cardElementLike = cardElement.querySelector('.element__button');                   // Найти кнопку нравится-ненравится
+  // const cardElementDel = cardElement.querySelector('.element__basket');                    // Найти кнопку удаления карточе
 
-  return cardElement;
+  // cardElementTitle.textContent = cardData.name;                                            // Присвоить значение name заголовку
+  // cardElementPhoto.src = cardData.link;                                                    // Присвоить значение link ссылке на картинку
+  // cardElementPhoto.alt = cardData.alt;                                                     // Присвоить описание картинке
+
+  // bindCardPreviewEventListener(cardElementPhoto);                                          // Открыть popup просмотра изображения карточки
+  // bindCardLikeEventListener(cardElementLike);                                              // Отметить в карточке нравится - ненравится
+  // bindCardDeleteEventListener(cardElementDel);                                             // Удалить карточку
+
+
+
+  // return cardElement;
+
+
+  return card.generateCard();
+
 };
 
 /** Функция открытия просмотра изображения карточки */
