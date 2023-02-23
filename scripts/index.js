@@ -41,18 +41,18 @@ const cardTemplate = document.querySelector('.template-card').content;          
 const cardsContainer = document.querySelector('.elements');                                // Найти раздел, куда будут добавлятся карточки
 
 /** Функция лайк-дизлайка карточки */
-const bindCardLikeEventListener = (buttonLike) => {
-  buttonLike.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('element__button_active');
-  });
-};
+// const bindCardLikeEventListener = (buttonLike) => {
+//   buttonLike.addEventListener('click', (evt) => {
+//     evt.target.classList.toggle('element__button_active');
+//   });
+// };
 
 /** Функция удаления карточки */
-const bindCardDeleteEventListener = (cardData) => {
-  cardData.addEventListener('click', (evt) => {
-    evt.target.closest('.element').remove();
-  });
-};
+// const bindCardDeleteEventListener = (cardData) => {
+//   cardData.addEventListener('click', (evt) => {
+//     evt.target.closest('.element').remove();
+//   });
+// };
 
 /** Функция создания карточки */
 const createCard = (cardData) => {
