@@ -37,61 +37,23 @@ const popupCloseList = document.querySelectorAll('.popup__button-close');       
 const popupClosest = document.querySelectorAll('.popup');                                  // Найти границы окна при нажатии на Esc и Overlay
 
 /** Добавление карточек */
-const cardTemplate = document.querySelector('.template-card').content;                     // Найти шаблон карточки для добавления
 const cardsContainer = document.querySelector('.elements');                                // Найти раздел, куда будут добавлятся карточки
-
-/** Функция лайк-дизлайка карточки */
-// const bindCardLikeEventListener = (buttonLike) => {
-//   buttonLike.addEventListener('click', (evt) => {
-//     evt.target.classList.toggle('element__button_active');
-//   });
-// };
-
-/** Функция удаления карточки */
-// const bindCardDeleteEventListener = (cardData) => {
-//   cardData.addEventListener('click', (evt) => {
-//     evt.target.closest('.element').remove();
-//   });
-// };
 
 /** Функция создания карточки */
 const createCard = (cardData) => {
-  const card = new Card(cardData, '.template-card');
-
-
-  // const cardElement = cardTemplate.cloneNode(true);                                        // Клонировать содержимое тега template
-  // const cardElementTitle = cardElement.querySelector('.element__title');                   // Найти в шаблоне заголовок
-  // const cardElementPhoto = cardElement.querySelector('.element__img');                     // Найти в шаблоне фотографию
-  // const cardElementLike = cardElement.querySelector('.element__button');                   // Найти кнопку нравится-ненравится
-  // const cardElementDel = cardElement.querySelector('.element__basket');                    // Найти кнопку удаления карточе
-
-  // cardElementTitle.textContent = cardData.name;                                            // Присвоить значение name заголовку
-  // cardElementPhoto.src = cardData.link;                                                    // Присвоить значение link ссылке на картинку
-  // cardElementPhoto.alt = cardData.alt;                                                     // Присвоить описание картинке
-
-  // bindCardPreviewEventListener(cardElementPhoto);                                          // Открыть popup просмотра изображения карточки
-  // bindCardLikeEventListener(cardElementLike);                                              // Отметить в карточке нравится - ненравится
-  // bindCardDeleteEventListener(cardElementDel);                                             // Удалить карточку
-
-
-
-  // return cardElement;
-
+  const card = new Card(cardData, '.template-card', handleCardClic);
 
   return card.generateCard();
-
 };
 
 /** Функция открытия просмотра изображения карточки */
-const bindCardPreviewEventListener = (cardImageElement) => {
-  cardImageElement.addEventListener('click', (evt) => {
-    openPopup(popupImage);
+const handleCardClic = (cardImage) => {
+  openPopup(popupImage);
 
-    elementImage.src = cardImageElement.src;
-    elementImage.alt = cardImageElement.alt;
-    elementTitle.textContent = evt.target.closest('.element').textContent;
-  });
-};
+  elementImage.src = cardImage.link;
+  elementImage.alt = cardImage.alt;
+  elementTitle.textContent = cardImage.name;
+}
 
 /** Создание карточек из массива */
 initialCards.forEach((cardData) => {
@@ -102,14 +64,14 @@ initialCards.forEach((cardData) => {
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscClosePopup);
-  document.body.style.overflowY = 'hidden';
+  // document.body.style.overflowY = 'hidden';
 };
 
 /** Общая функция закрытия Popup */
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleEscClosePopup);
-  document.body.style.overflowY = 'scroll';
+  // document.body.style.overflowY = 'scroll';
 };
 
 /**Функция закрытия по клавише Esc */
@@ -213,3 +175,5 @@ const renderCard = (card) => {
 const popupAddClosest = (evt) => {
   return evt.target.closest('.popup');
 };
+
+

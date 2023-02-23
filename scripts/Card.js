@@ -1,9 +1,10 @@
 class Card {
-  constructor(card, templateSelector) {
+  constructor(card, templateSelector, handleCardClic) {
     this._name = card.name;
     this._link = card.link;
     this._alt = card.alt;
     this._templateSelector = templateSelector;
+    this._handleCardClic = handleCardClic;
   };
 
   /**Получить шаблон */
@@ -48,12 +49,19 @@ class Card {
     this._cardElement.remove();
   };
 
+
   /**Слушатели событий */
   _setEventListeners() {
     this._cardElementLike.addEventListener('click', this._likeCard);
     this._cardElementDel.addEventListener('click', () => this._deliteCard());
+    this._cardElementPhoto.addEventListener('click', () =>
+      this._handleCardClic({
+        link: this._link,
+        alt: this._alt,
+        name: this._name,
+      }));
   };
-
 };
 
 export { Card };
+
