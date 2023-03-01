@@ -20,20 +20,16 @@ class Card {
 
   /**Сгенерировать карточку */
   generateCard() {
-
-    /**Найти карточку и ее элементы */
     this._cardElement = this._getTemplate();
     this._cardElementTitle = this._cardElement.querySelector('.element__title');
     this._cardElementPhoto = this._cardElement.querySelector('.element__img');
     this._cardElementLike = this._cardElement.querySelector('.element__button');
     this._cardElementDel = this._cardElement.querySelector('.element__basket');
 
-    /**Передать данные в карточку */
     this._cardElementTitle.textContent = this._name;
     this._cardElementPhoto.src = this._link;
     this._cardElementPhoto.alt = this._alt;
 
-    /**Установить слушатель */
     this._setEventListeners();
 
     return this._cardElement;

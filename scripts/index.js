@@ -1,13 +1,6 @@
 import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
-
-/** Объект валидации */
-const objectValidation = {
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputSelector: '.popup__input',
-  inputErrorClass: 'popup__input_type_error',
-}
+import {initialCards, formValidationConfig } from './utils.js';
 
 /** Popup редактирования профиля */
 const popupProfile = document.querySelector('.popup_type_profile');                     // Найти popup редактирования профиля
@@ -83,27 +76,27 @@ const handleEscClosePopup = (evt) => {
 };
 
 /**Функция сброса общих стилей при открытии Popup*/
-const resetValidationStyle = (objectValidation) => {
-  disableSubmitInput(objectValidation);
-  disableSubmitButton(objectValidation);
+const resetValidationStyle = (formValidationConfig) => {
+  disableSubmitInput(formValidationConfig);
+  disableSubmitButton(formValidationConfig);
 };
 
 /** Функция валидации строки ввода */
-const disableSubmitInput = (objectValidation) => {
-  const inputList = document.querySelectorAll(objectValidation.inputSelector);
+const disableSubmitInput = (formValidationConfig) => {
+  const inputList = document.querySelectorAll(formValidationConfig.inputSelector);
 
   inputList.forEach((input) => {
-    input.classList.remove(objectValidation.inputErrorClass);
+    input.classList.remove(formValidationConfig.inputErrorClass);
     input.nextElementSibling.textContent = '';
   });
 }
 
 /** Функция валидации кнопки Submit */
-const disableSubmitButton = (objectValidation) => {
-  const buttonSubmint = document.querySelectorAll(objectValidation.submitButtonSelector);
+const disableSubmitButton = (formValidationConfig) => {
+  const buttonSubmint = document.querySelectorAll(formValidationConfig.submitButtonSelector);
 
   buttonSubmint.forEach((button) => {
-    button.classList.add(objectValidation.inactiveButtonClass);
+    button.classList.add(formValidationConfig.inactiveButtonClass);
     button.setAttribute('disabled', '');
   });
 }
@@ -113,7 +106,7 @@ popupOpenEdit.addEventListener('click', () => {
   openPopup(popupProfile);
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
-  resetValidationStyle(objectValidation);
+  resetValidationStyle(formValidationConfig);
 });
 
 /** Функция сохранения внесенных в формы popup изменений при закрытии окна */
@@ -147,7 +140,7 @@ popupClosest.forEach((item) => {
 /** Функция открытия Popup добавления карточки местности */
 popupOpenAdd.addEventListener('click', () => {
   openPopup(popupPlace);
-  resetValidationStyle(objectValidation);
+  resetValidationStyle(formValidationConfig);
 
   popupFormTitle.value = '';
   popupFormLink.value = '';
@@ -177,3 +170,9 @@ const popupAddClosest = (evt) => {
 };
 
 
+/**Валидация форм */
+const validationFormProfile = new FormValidator(formValidationConfig, popupProfile);
+validationFormProfile.enableValidation();
+
+const validationFormPlace = new FormValidator(formValidationConfig, popupPlace);
+validationFormPlace.enableValidation();
