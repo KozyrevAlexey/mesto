@@ -32,6 +32,8 @@ const popupClosest = document.querySelectorAll('.popup');                       
 /** Добавление карточек */
 const cardsContainer = document.querySelector('.elements');                                // Найти раздел, куда будут добавлятся карточки
 
+
+
 /** Функция создания карточки */
 const createCard = (cardData) => {
   const card = new Card(cardData, '.template-card', handleCardClic);
@@ -75,38 +77,12 @@ const handleEscClosePopup = (evt) => {
   };
 };
 
-/**Функция сброса общих стилей при открытии Popup*/
-const resetValidationStyle = (formValidationConfig) => {
-  disableSubmitInput(formValidationConfig);
-  disableSubmitButton(formValidationConfig);
-};
-
-/** Функция валидации строки ввода */
-const disableSubmitInput = (formValidationConfig) => {
-  const inputList = document.querySelectorAll(formValidationConfig.inputSelector);
-
-  inputList.forEach((input) => {
-    input.classList.remove(formValidationConfig.inputErrorClass);
-    input.nextElementSibling.textContent = '';
-  });
-}
-
-/** Функция валидации кнопки Submit */
-const disableSubmitButton = (formValidationConfig) => {
-  const buttonSubmint = document.querySelectorAll(formValidationConfig.submitButtonSelector);
-
-  buttonSubmint.forEach((button) => {
-    button.classList.add(formValidationConfig.inactiveButtonClass);
-    button.setAttribute('disabled', '');
-  });
-}
-
 /** Функция открытия Popup редактирования профиля c указанными на странице данными */
 popupOpenEdit.addEventListener('click', () => {
   openPopup(popupProfile);
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
-  resetValidationStyle(formValidationConfig);
+  validationFormProfile.enableValidation();
 });
 
 /** Функция сохранения внесенных в формы popup изменений при закрытии окна */
@@ -140,7 +116,7 @@ popupClosest.forEach((item) => {
 /** Функция открытия Popup добавления карточки местности */
 popupOpenAdd.addEventListener('click', () => {
   openPopup(popupPlace);
-  resetValidationStyle(formValidationConfig);
+  validationFormPlace.enableValidation();
 
   popupFormTitle.value = '';
   popupFormLink.value = '';
@@ -171,8 +147,10 @@ const popupAddClosest = (evt) => {
 
 
 /**Валидация форм */
-const validationFormProfile = new FormValidator(formValidationConfig, popupProfile);
+const validationFormProfile = new FormValidator(formValidationConfig, '.popup__form_type_profile');
 validationFormProfile.enableValidation();
 
-const validationFormPlace = new FormValidator(formValidationConfig, popupPlace);
+
+
+const validationFormPlace = new FormValidator(formValidationConfig, '.popup__form_type_place');
 validationFormPlace.enableValidation();
