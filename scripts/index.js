@@ -1,10 +1,6 @@
-/** Объект валидации */
-const objectValidation = {
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputSelector: '.popup__input',
-  inputErrorClass: 'popup__input_type_error',
-}
+import { FormValidator } from './FormValidator.js';
+import { Card } from './Card.js';
+import {initialCards, formValidationConfig } from './utils.js';
 
 /** Popup редактирования профиля */
 const popupProfile = document.querySelector('.popup_type_profile');                     // Найти popup редактирования профиля
@@ -34,52 +30,25 @@ const popupCloseList = document.querySelectorAll('.popup__button-close');       
 const popupClosest = document.querySelectorAll('.popup');                                  // Найти границы окна при нажатии на Esc и Overlay
 
 /** Добавление карточек */
-const cardTemplate = document.querySelector('.template-card').content;                     // Найти шаблон карточки для добавления
 const cardsContainer = document.querySelector('.elements');                                // Найти раздел, куда будут добавлятся карточки
 
-/** Функция лайк-дизлайка карточки */
-const bindCardLikeEventListener = (buttonLike) => {
-  buttonLike.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('element__button_active');
-  });
-};
 
-/** Функция удаления карточки */
-const bindCardDeleteEventListener = (cardData) => {
-  cardData.addEventListener('click', (evt) => {
-    evt.target.closest('.element').remove();
-  });
-};
 
 /** Функция создания карточки */
 const createCard = (cardData) => {
-  const cardElement = cardTemplate.cloneNode(true);                                        // Клонировать содержимое тега template
-  const cardElementTitle = cardElement.querySelector('.element__title');                   // Найти в шаблоне заголовок
-  const cardElementPhoto = cardElement.querySelector('.element__img');                     // Найти в шаблоне фотографию
-  const cardElementLike = cardElement.querySelector('.element__button');                   // Найти кнопку нравится-ненравится
-  const cardElementDel = cardElement.querySelector('.element__basket');                    // Найти кнопку удаления карточе
+  const card = new Card(cardData, '.template-card', handleCardClic);
 
-  cardElementTitle.textContent = cardData.name;                                            // Присвоить значение name заголовку
-  cardElementPhoto.src = cardData.link;                                                    // Присвоить значение link ссылке на картинку
-  cardElementPhoto.alt = cardData.alt;                                                     // Присвоить описание картинке
-
-  bindCardPreviewEventListener(cardElementPhoto);                                          // Открыть popup просмотра изображения карточки
-  bindCardLikeEventListener(cardElementLike);                                              // Отметить в карточке нравится - ненравится
-  bindCardDeleteEventListener(cardElementDel);                                             // Удалить карточку
-
-  return cardElement;
+  return card.generateCard();
 };
 
 /** Функция открытия просмотра изображения карточки */
-const bindCardPreviewEventListener = (cardImageElement) => {
-  cardImageElement.addEventListener('click', (evt) => {
-    openPopup(popupImage);
+const handleCardClic = (cardImage) => {
+  openPopup(popupImage);
 
-    elementImage.src = cardImageElement.src;
-    elementImage.alt = cardImageElement.alt;
-    elementTitle.textContent = evt.target.closest('.element').textContent;
-  });
-};
+  elementImage.src = cardImage.link;
+  elementImage.alt = cardImage.alt;
+  elementTitle.textContent = cardImage.name;
+}
 
 /** Создание карточек из массива */
 initialCards.forEach((cardData) => {
@@ -90,14 +59,14 @@ initialCards.forEach((cardData) => {
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscClosePopup);
-  document.body.style.overflowY = 'hidden';
+  // document.body.style.overflowY = 'hidden';
 };
 
 /** Общая функция закрытия Popup */
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleEscClosePopup);
-  document.body.style.overflowY = 'scroll';
+  // document.body.style.overflowY = 'scroll';
 };
 
 /**Функция закрытия по клавише Esc */
@@ -108,38 +77,12 @@ const handleEscClosePopup = (evt) => {
   };
 };
 
-/**Функция сброса общих стилей при открытии Popup*/
-const resetValidationStyle = (objectValidation) => {
-  disableSubmitInput(objectValidation);
-  disableSubmitButton(objectValidation);
-};
-
-/** Функция валидации строки ввода */
-const disableSubmitInput = (objectValidation) => {
-  const inputList = document.querySelectorAll(objectValidation.inputSelector);
-
-  inputList.forEach((input) => {
-    input.classList.remove(objectValidation.inputErrorClass);
-    input.nextElementSibling.textContent = '';
-  });
-}
-
-/** Функция валидации кнопки Submit */
-const disableSubmitButton = (objectValidation) => {
-  const buttonSubmint = document.querySelectorAll(objectValidation.submitButtonSelector);
-
-  buttonSubmint.forEach((button) => {
-    button.classList.add(objectValidation.inactiveButtonClass);
-    button.setAttribute('disabled', '');
-  });
-}
-
 /** Функция открытия Popup редактирования профиля c указанными на странице данными */
 popupOpenEdit.addEventListener('click', () => {
   openPopup(popupProfile);
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
-  resetValidationStyle(objectValidation);
+  validationFormProfile.enableValidation();
 });
 
 /** Функция сохранения внесенных в формы popup изменений при закрытии окна */
@@ -173,7 +116,7 @@ popupClosest.forEach((item) => {
 /** Функция открытия Popup добавления карточки местности */
 popupOpenAdd.addEventListener('click', () => {
   openPopup(popupPlace);
-  resetValidationStyle(objectValidation);
+  validationFormPlace.enableValidation();
 
   popupFormTitle.value = '';
   popupFormLink.value = '';
@@ -201,3 +144,13 @@ const renderCard = (card) => {
 const popupAddClosest = (evt) => {
   return evt.target.closest('.popup');
 };
+
+
+/**Валидация форм */
+const validationFormProfile = new FormValidator(formValidationConfig, '.popup__form_type_profile');
+validationFormProfile.enableValidation();
+
+
+
+const validationFormPlace = new FormValidator(formValidationConfig, '.popup__form_type_place');
+validationFormPlace.enableValidation();

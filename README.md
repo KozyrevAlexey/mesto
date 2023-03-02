@@ -3,10 +3,10 @@
 # Проектная работа [**Mesto**](https://kozyrevalexey.github.io/mesto/)
 ## Курс обучения в [**Яндекс Практикум**](https://practicum.yandex.ru/) по программе [**Веб-разработчик**](https://practicum.yandex.ru/web/)
 ---
-## *6 - спринт* ~~*(5 - спринт, 4 - спринт)*~~ продолжаю изучать <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" title="js" width="40" height="40"/>
+## *7 - спринт* ~~*(6 - спринт, 5 - спринт, 4 - спринт)*~~ продолжаю изучать <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" title="js" width="40" height="40"/>
 ### В этой работе необходимо добавить функционал ресурса [**Mesto**](https://kozyrevalexey.github.io/mesto/).
  *Ранее в 4 спринте было сделано:*
-> По макету из [![Figma](https://img.shields.io/badge/-figma-blue?style=flat&logo=Figma&logoColor=white)](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/>JavaScript.-Sprint-4?node-id=0%3A1&t=VbwKV1sbQhzBOJzM-0) необходимо сверстать адаптивную страницу которая правильно отображается как на мониторе компьютера, так и на экране мобильных устройств. В данной работе использовались следующие технологии: - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" title="html" width="40" height="40"/> реализовать разметку кода без ошибок валидации в [![W3C](https://img.shields.io/badge/-w3c-blue?style=flat&logo=W3C&logoColor=white)](https://validator.w3.org/#validate_by_input). Используя - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" title="css" width="40" height="40"/> описать внешний вид отображения кода.  С помощью <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" title="js" width="40" height="40"/> добавить странице инерактивности, запустить работу PopUp - элемента редактирования имени и профессии владельца профиля. В работе, для синхронизаций версий использовал сервис <img src="https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-github-1.png" title="github" width="40" height="40"/>&nbsp; с технологией <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain.svg" title="git" width="40" height="40"/>&nbsp;
+> По макету из [![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/>JavaScript.-Sprint-4?node-id=0%3A1&t=VbwKV1sbQhzBOJzM-0) необходимо сверстать адаптивную страницу которая правильно отображается как на мониторе компьютера, так и на экране мобильных устройств. В данной работе использовались следующие технологии: - ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) реализовать разметку кода без ошибок валидации в [![W3C](https://img.shields.io/badge/-w3c-blue?style=flat&logo=W3C&logoColor=white)](https://validator.w3.org/#validate_by_input). Используя - ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) описать внешний вид отображения кода.  С помощью ! ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) добавить странице инерактивности, запустить работу PopUp - элемента редактирования имени и профессии владельца профиля. В работе, для синхронизаций версий использовал сервис ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)&nbsp; с технологией ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)&nbsp;
 
 *..в 5 спринте добавлено:*
 >>1. Шесть карточек «из коробки»
@@ -17,13 +17,14 @@
 >>6. Открытие попапа с картинкой
 >>7. Плавное открытие и закрытие попапов
 
-### ...а в 6 спринте я продолжаю улучшать функционал проекта следующим образом:
-- разработать валидацию всех форм,
-- улучшить UX при работе с попапами.
+*...в 6 спринте я продолжал улучшать функционал проекта следующим образом:*
+>>> разработал валидацию всех форм и улучшил UX при работе с попапами.
+
+### В текущей (7 спринт) работе, необходимо провести рефакторинг ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) фалов, а именно переписать часть кода используя знания о классах.
 
 ---
 ### В следующей работе над проектом нужно будет:
-Провести рефакторинг <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" title="js" width="40" height="40"/> фалов, а именно переписать часть кода используя знания о классах.
+Продолжить заниматься рефакторингом файлов ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E). Создадите ещё несколько классов и настроите связи между ними. В завершении проектной работы нужно будет настроить сборку проекта ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black).
 
 ---
 > ### ...и это только начало, дальше будет еще интереснее, т.к. будут использоватся новые технологии, инструменты и приемы.
