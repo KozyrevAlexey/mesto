@@ -36,19 +36,20 @@ class Card {
   };
 
   /** Функция лайк-дизлайка карточки */
-  _likeCard(evt) {
-    evt.target.classList.toggle('element__button_active');
+  _likeCard() {
+    this._cardElementLike.classList.toggle('element__button_active');
   };
 
   /** Функция удаления карточки */
   _deliteCard() {
     this._cardElement.remove();
+    this._cardElement = null;
   };
 
 
   /**Слушатели событий */
   _setEventListeners() {
-    this._cardElementLike.addEventListener('click', this._likeCard);
+    this._cardElementLike.addEventListener('click', () => this._likeCard());
     this._cardElementDel.addEventListener('click', () => this._deliteCard());
     this._cardElementPhoto.addEventListener('click', () =>
       this._handleCardClic({
