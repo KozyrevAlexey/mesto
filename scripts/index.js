@@ -27,7 +27,7 @@ const elementTitle = document.querySelector('.popup__name');                    
 const popupCloseList = document.querySelectorAll('.popup__button-close');                  // Найти ВСЕ кнопки закрытия Popup
 
 /** Границы окна Popup */
-const popupClosest = document.querySelectorAll('.popup');                                  // Найти границы окна при нажатии на Esc и Overlay
+const popupsClosest = document.querySelectorAll('.popup');                                  // Найти границы окна при нажатии на Esc и Overlay
 
 /** Добавление карточек */
 const cardsContainer = document.querySelector('.elements');                                // Найти раздел, куда будут добавлятся карточки
@@ -81,7 +81,7 @@ popupOpenEdit.addEventListener('click', () => {
   openPopup(popupProfile);
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
-  validationFormProfile.enableValidation();
+  validationFormProfile.clearValidationForm();
 });
 
 /** Функция сохранения внесенных в формы popup изменений при закрытии окна */
@@ -103,11 +103,10 @@ popupCloseList.forEach((item) => {
 });
 
 /** Закрытие всех Popup при нажатии на Overlay */
-popupClosest.forEach((item) => {
+popupsClosest.forEach((item) => {
   item.addEventListener('click', (evt) => {
     if (evt.target === evt.currentTarget) {
-      const popupClosestOverlay = popupAddClosest(evt);
-      closePopup(popupClosestOverlay);
+      closePopup(item);
     };
   });
 });
@@ -115,10 +114,9 @@ popupClosest.forEach((item) => {
 /** Функция открытия Popup добавления карточки местности */
 popupOpenAdd.addEventListener('click', () => {
   openPopup(popupPlace);
-  validationFormPlace.enableValidation();
-
   popupFormTitle.value = '';
   popupFormLink.value = '';
+  validationFormPlace.clearValidationForm();
 });
 
 /** Функция сохранения внесенных в формы popup данных (название региона и ссылку на фото) при закрытии окна */
@@ -144,12 +142,9 @@ const popupAddClosest = (evt) => {
   return evt.target.closest('.popup');
 };
 
-
 /**Валидация форм */
 const validationFormProfile = new FormValidator(formValidationConfig, '.popup__form_type_profile');
 validationFormProfile.enableValidation();
-
-
 
 const validationFormPlace = new FormValidator(formValidationConfig, '.popup__form_type_place');
 validationFormPlace.enableValidation();
