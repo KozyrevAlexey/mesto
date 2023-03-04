@@ -21,8 +21,8 @@ enableValidation() {
  /**Добавить класс ошибки */
   _showInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.add(this._inputErrorClass);
     inputElement.classList.add(this._errorClass);
-
     errorElement.textContent = inputElement.validationMessage;
   }
 
@@ -30,6 +30,7 @@ enableValidation() {
   _hideInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._errorClass);
+    inputElement.classList.remove(this._inputErrorClass);
     errorElement.textContent = "";
   }
 
