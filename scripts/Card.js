@@ -2,7 +2,6 @@ class Card {
   constructor(card, templateSelector, handleCardClic) {
     this._name = card.name;
     this._link = card.link;
-    this._alt = card.alt;
     this._templateSelector = templateSelector;
     this._handleCardClic = handleCardClic;
   };

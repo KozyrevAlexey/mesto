@@ -27,7 +27,7 @@ const elementTitle = document.querySelector('.popup__name');                    
 const popupCloseList = document.querySelectorAll('.popup__button-close');                  // Найти ВСЕ кнопки закрытия Popup
 
 /** Границы окна Popup */
-const popupsClosest = document.querySelectorAll('.popup');                                  // Найти границы окна при нажатии на Esc и Overlay
+const popups = document.querySelectorAll('.popup');                                  // Найти границы окна при нажатии на Esc и Overlay
 
 /** Добавление карточек */
 const cardsContainer = document.querySelector('.elements');                                // Найти раздел, куда будут добавлятся карточки
@@ -103,7 +103,7 @@ popupCloseList.forEach((item) => {
 });
 
 /** Закрытие всех Popup при нажатии на Overlay */
-popupsClosest.forEach((item) => {
+popups.forEach((item) => {
   item.addEventListener('click', (evt) => {
     if (evt.target === evt.currentTarget) {
       closePopup(item);

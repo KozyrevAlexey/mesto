@@ -6,15 +6,12 @@ class FormValidator {
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
     this._formSelector = config.formSelector;
-
     this._form = form;
-    this._formElement = document.querySelector(this._form);
-    this._buttonSubmint = this._formElement.querySelector(this._submitButtonSelector);
-    this._inputList = this._formElement.querySelectorAll(this._inputSelector);
   }
 
   /**Функция валидации формы */
 enableValidation() {
+  this._formElement = document.querySelector(this._form);
   this._addInputListners();
 };
 
@@ -45,6 +42,7 @@ enableValidation() {
 
   /**Функция переключения кнопки сабмит */
   _toggleButton() {
+    this._buttonSubmint = this._formElement.querySelector(this._submitButtonSelector);
     this._isFormValid = this._formElement.checkValidity();
     this._buttonSubmint.disabled = !this._isFormValid;
     this._buttonSubmint.classList.toggle(this._inactiveButtonClass, !this._isFormValid);
@@ -53,7 +51,7 @@ enableValidation() {
  /**Объявить функцию слушателей всех инпутов */
 _addInputListners() {
   this._toggleButton();
-
+  this._inputList = this._formElement.querySelectorAll(this._inputSelector);
   this._inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       this._handleFormInput(inputElement);
