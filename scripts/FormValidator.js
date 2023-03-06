@@ -7,17 +7,17 @@ class FormValidator {
     this._errorClass = config.errorClass;
     this._formSelector = config.formSelector;
     this._form = form;
+    this._form = document.querySelector(form);
   }
 
   /**Функция валидации формы */
 enableValidation() {
-  this._formElement = document.querySelector(this._form);
   this._addInputListners();
 };
 
  /**Добавить класс ошибки */
   _showInputError(inputElement) {
-    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
+    const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
     inputElement.classList.add(this._errorClass);
     errorElement.textContent = inputElement.validationMessage;
@@ -25,7 +25,7 @@ enableValidation() {
 
   /**Снять класс ошибки */
   _hideInputError(inputElement) {
-    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
+    const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._errorClass);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.textContent = "";
@@ -42,8 +42,8 @@ enableValidation() {
 
   /**Функция переключения кнопки сабмит */
   _toggleButton() {
-    this._buttonSubmint = this._formElement.querySelector(this._submitButtonSelector);
-    this._isFormValid = this._formElement.checkValidity();
+    this._buttonSubmint = this._form.querySelector(this._submitButtonSelector);
+    this._isFormValid = this._form.checkValidity();
     this._buttonSubmint.disabled = !this._isFormValid;
     this._buttonSubmint.classList.toggle(this._inactiveButtonClass, !this._isFormValid);
   }
@@ -51,7 +51,7 @@ enableValidation() {
  /**Объявить функцию слушателей всех инпутов */
 _addInputListners() {
   this._toggleButton();
-  this._inputList = this._formElement.querySelectorAll(this._inputSelector);
+  this._inputList = this._form.querySelectorAll(this._inputSelector);
   this._inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       this._handleFormInput(inputElement);
