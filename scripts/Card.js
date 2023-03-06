@@ -27,7 +27,6 @@ class Card {
 
     this._cardElementTitle.textContent = this._name;
     this._cardElementPhoto.src = this._link;
-    this._cardElementPhoto.alt = this._alt;
 
     this._setEventListeners();
 
@@ -53,7 +52,6 @@ class Card {
     this._cardElementPhoto.addEventListener('click', () =>
       this._handleCardClic({
         link: this._link,
-        alt: this._alt,
         name: this._name,
       }));
   };
