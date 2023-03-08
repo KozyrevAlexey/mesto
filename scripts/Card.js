@@ -27,6 +27,7 @@ class Card {
 
     this._cardElementTitle.textContent = this._name;
     this._cardElementPhoto.src = this._link;
+    this._cardElementPhoto.alt = this._name;
 
     this._setEventListeners();
 
@@ -43,7 +44,6 @@ class Card {
     this._cardElement.remove();
     this._cardElement = null;
   };
-
 
   /**Слушатели событий */
   _setEventListeners() {

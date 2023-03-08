@@ -1,6 +1,6 @@
 import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
-import {initialCards, formValidationConfig } from './utils.js';
+import { initialCards, formValidationConfig } from './utils.js';
 
 /** Popup редактирования профиля */
 const popupProfile = document.querySelector('.popup_type_profile');                     // Найти popup редактирования профиля
@@ -46,7 +46,6 @@ const handleCardClic = (cardImage) => {
   openPopup(popupImage);
 
   elementImage.src = cardImage.link;
-  elementImage.alt = cardImage.alt;
   elementTitle.textContent = cardImage.name;
 }
 
@@ -143,8 +142,8 @@ const popupAddClosest = (evt) => {
 };
 
 /**Валидация форм */
-const validationFormProfile = new FormValidator(formValidationConfig, '.popup__form_type_profile');
+const validationFormProfile = new FormValidator(formValidationConfig, popupFormProfile);
 validationFormProfile.enableValidation();
 
-const validationFormPlace = new FormValidator(formValidationConfig, '.popup__form_type_place');
+const validationFormPlace = new FormValidator(formValidationConfig, popupFormPlace);
 validationFormPlace.enableValidation();
