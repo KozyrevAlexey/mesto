@@ -46,6 +46,7 @@ const handleCardClic = (cardImage) => {
   openPopup(popupImage);
 
   elementImage.src = cardImage.link;
+  elementImage.alt = cardImage.name;
   elementTitle.textContent = cardImage.name;
 }
 
