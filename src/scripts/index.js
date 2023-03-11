@@ -2,6 +2,8 @@ import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
 import { initialCards, formValidationConfig } from './utils.js';
 
+import '../pages/index.css';
+
 /** Popup редактирования профиля */
 const popupProfile = document.querySelector('.popup_type_profile');                     // Найти popup редактирования профиля
 const popupOpenEdit = document.querySelector('.profile__edit-buton');                   // Найти кнопку открытия редактирования профиля
