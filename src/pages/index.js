@@ -4,7 +4,7 @@ import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
-import { initialCards, formValidationConfig } from '../utilis/utils';
+import { initialCards, formValidationConfig } from '../utilis/utils.js';
 
 import '../pages/index.css';
 
@@ -148,12 +148,20 @@ import '../pages/index.css';
 //   return evt.target.closest('.popup');
 // };
 
+/** Найти кнопки открытия Popup */
+const popupOpenEdit = document.querySelector('.profile__edit-buton');
+const popupOpenAdd = document.querySelector('.profile__add-button');
 
+/**Получение формы профиля */
+const userInfo = new UserInfo({
+  selectorUserName: '.profile-info__title',
+  selectorUserJob: '.profile-info__intro'
+})
 
+/**-------------Карточки с изображением---------------------- */
 
 /**Создание Popup изображения */
 const openImagePopup = new PopupWithImage('.popup_type_image');
-
 
 /** Функция создания карточки */
 const createCard = (cardData) => {
@@ -169,16 +177,46 @@ const cardsContainer = new Section({
   renderer: (card) => {
     cardsContainer.addItem(createCard(card));
   },
-}, '.elements'
+},'.elements'
 );
 
-/** Отобразить карточки */
+/** Отобразить карточки на странице*/
 cardsContainer.renderItems(initialCards);
+
+/**-------------Popup добавления и редактирования----------------- */
+
+/**Функция создания Popup редактировапния профиля */
+const popupProfile = new PopupWithForm('.popup_type_profile', ({ name, job }) => {
+  userInfo.setUserInfo({ name, job });
+}
+);
+
+/**Функция открытия Popup редактировапния профиля */
+popupOpenEdit.addEventListener('click', () => {
+  popupProfile.open();
+  popupProfile.inputsFill(userInfo.getUserInfo());
+});
+
+
+/**Функция создания Popup добавления карточки */
+const popupAddCard = new PopupWithForm('.popup_type_place', ({ link, title }) => {
+  cardsContainer.addItem(createCard({
+    name: title,
+    link: link,
+    alt: title,
+  }))
+});
+
+/**Функция создания Popup добавления карточки */
+popupOpenAdd.addEventListener('click', () => {
+  popupAddCard.open();
+});
 
 
 /**Слушатели */
 openImagePopup.setEventListeners();
-
+popupProfile.setEventListeners();
+popupAddCard.setEventListeners();
 
 
 // /**Валидация форм */
