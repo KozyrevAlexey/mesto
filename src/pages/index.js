@@ -1,7 +1,6 @@
 import { FormValidator } from '../components/FormValidator.js';
 import { Card } from '../components/Card.js';
 import { Section } from '../components/Section.js';
-import { Popup } from '../components/Popup.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
@@ -152,30 +151,33 @@ import '../pages/index.css';
 
 
 
-
+/**Создание Popup изображения */
+const openImagePopup = new PopupWithImage('.popup_type_image');
 
 
 /** Функция создания карточки */
 const createCard = (cardData) => {
-  const card = new Card(cardData, '.template-card');
+  const card = new Card(cardData, '.template-card', () => {
+    openImagePopup.open(cardData);
+  });
 
   return card.generateCard();
 }
 
-
 /**Функция создания секции */
 const cardsContainer = new Section({
-  renderer: (items) => {
-    cardsContainer.addItem(createCard(items));
+  renderer: (card) => {
+    cardsContainer.addItem(createCard(card));
   },
 }, '.elements'
 );
 
-
-
+/** Отобразить карточки */
 cardsContainer.renderItems(initialCards);
 
 
+/**Слушатели */
+openImagePopup.setEventListeners();
 
 
 
