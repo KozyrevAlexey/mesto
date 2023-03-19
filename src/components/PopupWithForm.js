@@ -5,24 +5,24 @@ class PopupWithForm extends Popup {
     super(selectorPopup);
     this._submitCallback = submitCallback;
     this._formSubmit = this._popup.querySelector('.popup__form');
-    this._inputList = Array.from(this._formSubmit.querySelector('.popup__input'));
-    this._inputtsValues = {};
+    this._inputList = Array.from(this._formSubmit.querySelectorAll('.popup__input'));
+    this._inputsValues = {};
   }
 
   /**Получить входные значения input */
   _getInputValues() {
     this._inputList.forEach((input) => {
       const inputName = input.getAttribute('name')
-      this._inputtsValues[inputName] = input.value;
+      this._inputsValues[inputName] = input.value;
     });
-    return this._inputtsValues
+    return this._inputsValues;
   }
 
   /**Функция наполнения формы input переданными данными*/
   inputsFill(data) {
     this._inputList.forEach((input) => {
       const inputName = input.getAttribute('name')
-      input.value = data[`$(inputName)`];
+      input.value = data[`${inputName}`];
     });
   }
 
@@ -38,10 +38,9 @@ class PopupWithForm extends Popup {
     this._formSubmit.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._submitCallback(this._getInputValues());
-      this._close();
+      this.close();
     })
   }
-
 };
 
 export { PopupWithForm };

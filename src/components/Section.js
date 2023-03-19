@@ -4,7 +4,7 @@ class Section {
     this._container = document.querySelector(containerSelector);
   };
 
-  /**Отрисовать контент */
+  /**Отобразить контент */
   renderItems(items) {
     items.forEach(item => {
       this._renderer(item);
