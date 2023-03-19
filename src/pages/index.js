@@ -11,12 +11,12 @@ import '../pages/index.css';
 /**-------------Карточки с изображением---------------------- */
 
 /**Создание Popup изображения */
-const openImagePopup = new PopupWithImage('.popup_type_image');
+const cardImagePopup = new PopupWithImage('.popup_type_image');
 
 /** Функция создания карточки */
 const createCard = (cardData) => {
   const card = new Card(cardData, '.template-card', () => {
-    openImagePopup.open(cardData);
+    cardImagePopup.open(cardData);
   });
 
   return card.generateCard();
@@ -46,26 +46,29 @@ const userInfo = new UserInfo({
 })
 
 /**Функция создания Popup редактировапния профиля */
-const popupFormProfile = new PopupWithForm('.popup_type_profile', ({ name, job }) => {
-  userInfo.setUserInfo({ name, job });
-});
+const popupFormProfile = new PopupWithForm('.popup_type_profile', {
+  submitCallback: (data) => {
+    userInfo.setUserInfo(data);
+  }
+})
 
 /**Функция открытия Popup редактировапния профиля */
 popupOpenEdit.addEventListener('click', () => {
   popupFormProfile.open();
-  popupFormProfile.inputsFill(userInfo.getUserInfo());
+  popupFormProfile.setInputValues(userInfo.getUserInfo());
   validatorForms['form-profile'].clearValidationForm();
 });
 
-
 /**Функция создания Popup добавления карточки */
-const popupFormAddCards = new PopupWithForm('.popup_type_place', ({ link, title }) => {
-  cardsContainer.addItem(createCard({
-    name: title,
-    link: link,
-    alt: title,
-  }))
-});
+const popupFormAddCards = new PopupWithForm('.popup_type_place', {
+  submitCallback: ({ link, title }) => {
+    cardsContainer.addItem(createCard({
+      name: title,
+      link: link,
+      alt: title,
+    }))
+  }
+})
 
 /**Функция открытия Popup добавления карточки */
 popupOpenAdd.addEventListener('click', () => {
@@ -94,7 +97,7 @@ const enableValidation = (data) => {
 enableValidation(formValidationConfig);
 
 /**Слушатели */
-openImagePopup.setEventListeners();
+cardImagePopup.setEventListeners();
 popupFormProfile.setEventListeners();
 popupFormAddCards.setEventListeners();
 
