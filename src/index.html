@@ -5,19 +5,19 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
+  <link rel="icon" href="<%=require('./images/favicon.svg')%>">
   <title>Mesto</title>
 </head>
 
 <body class="page">
   <header class="header">
     <a href="#">
-      <img src="./images/logo.svg" alt="логотип" class="logo">
+      <img src="<%=require('./images/logo.svg')%>" alt="логотип" class="logo">
     </a>
   </header>
   <main class="main">
     <section class="profile">
-      <img src="./images/kusto.jpg" alt="Аватар пользователя" class="profile__avatar">
+      <img src="<%=require('./images/kusto.jpg')%>" alt="Аватар пользователя" class="profile__avatar">
       <div class="profile-info">
         <div class="profile-info__wrap">
           <h1 class="profile-info__title">Жак-Ив Кусто</h1>
@@ -42,24 +42,22 @@
         <input
         id="input-name"
         type="text"
-        name="popup-name"
+        name="name"
         class="popup__input popup__input_type_name"
         placeholder="Укажите имя"
         minlength="2"
         maxlength="40"
-        required
-        >
+        required>
         <span id="input-name-error" class="popup__error"></span>
         <input
         id="input-job"
         type="text"
-        name="popup-job"
+        name="job"
         class="popup__input popup__input_type_job"
         placeholder="Укажите професcию"
         minlength="2"
         maxlength="200"
-        required
-        >
+        required>
         <span id="input-job-error" class="popup__error"></span>
         <button class="popup__button popup__button-submit" type="submit">Сохранить</button>
       </form>
@@ -78,8 +76,7 @@
         placeholder="Название"
         minlength="2"
         maxlength="30"
-        required
-        >
+        required>
         <span id="input-title-error" class="popup__error"></span>
         <input
         id="input-link"
@@ -110,7 +107,7 @@
       </div>
     </article>
   </template>
-  <script type="module" src="./scripts/index.js"></script>
+
 </body>
 
 </html>
