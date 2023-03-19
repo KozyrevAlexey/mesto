@@ -1,28 +1,26 @@
 import Popup from './Popup.js';
 
 class PopupWithForm extends Popup {
-  constructor(selectorPopup, submitCallback) {
+  constructor(selectorPopup, { submitCallback }) {
     super(selectorPopup);
     this._submitCallback = submitCallback;
     this._formSubmit = this._popup.querySelector('.popup__form');
     this._inputList = Array.from(this._formSubmit.querySelectorAll('.popup__input'));
-    this._inputsValues = {};
   }
 
   /**Получить входные значения input */
   _getInputValues() {
+    this._inputsValues = {};
     this._inputList.forEach((input) => {
-      const inputName = input.getAttribute('name')
-      this._inputsValues[inputName] = input.value;
+      this._inputsValues[input.name] = input.value;
     });
     return this._inputsValues;
   }
 
   /**Функция наполнения формы input переданными данными*/
-  inputsFill(data) {
-    this._inputList.forEach((input) => {
-      const inputName = input.getAttribute('name')
-      input.value = data[`${inputName}`];
+  setInputValues = (data) => {
+    this._inputList.forEach((input, i) => {
+      input.value = Object.values(data)[i];
     });
   }
 
