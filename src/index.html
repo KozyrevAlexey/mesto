@@ -17,7 +17,9 @@
   </header>
   <main class="main">
     <section class="profile">
-      <img src="<%=require('./images/kusto.jpg')%>" alt="Аватар пользователя" class="profile__avatar">
+      <div class="profile__avatar">
+        <img src="<%=require('./images/kusto.jpg')%>" alt="Аватар пользователя" class="profile__img">
+      </div>
       <div class="profile-info">
         <div class="profile-info__wrap">
           <h1 class="profile-info__title">Жак-Ив Кусто</h1>
@@ -103,7 +105,10 @@
       <img alt="#" class="element__img">
       <div class="element__wrap">
         <h2 class="element__title"></h2>
-        <button class="element__button"></button>
+        <div class="element__like-group">
+          <button class="element__button"></button>
+          <span class="element__span">0</span>
+        </div>
       </div>
     </article>
   </template>
