@@ -43,7 +43,16 @@ const formValidationConfig = {
   errorClass: 'popup__error_visible'
 }
 
-export { initialCards, formValidationConfig };
+/**Данные для обращения к серверу */
+const apiConfig = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-62',
+  headers:{
+    'Content-Type': "application/json",
+    authorization: '433d83bc-6b8b-4de8-9d1d-be42c9389f4e'
+  }
+}
+
+export { initialCards, formValidationConfig, apiConfig };
 
 
 

@@ -4,9 +4,19 @@ import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
-import { initialCards, formValidationConfig } from '../utilis/utils.js';
+import { apiConfig, formValidationConfig } from '../utilis/utils.js';
+import { Api } from '../components/Api.js'
 
 import '../pages/index.css';
+
+/**----------------Api------------------------------ */
+const api = new Api(apiConfig);
+
+/**Отобразить карточки с сервера */
+api.getInitialCards()
+.then(data => {
+  cardsContainer.renderItems(data)
+})
 
 /**-------------Карточки с изображением---------------------- */
 
@@ -31,7 +41,7 @@ const cardsContainer = new Section({
 );
 
 /** Отобразить карточки на странице*/
-cardsContainer.renderItems(initialCards);
+// cardsContainer.renderItems(initialCards);
 
 /**-------------Popup добавления и редактирования----------------- */
 
