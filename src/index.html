@@ -36,6 +36,7 @@
   <footer class="footer">
     <span class="footer__span"> &#169; 2020 Mesto Russia</span>
   </footer>
+  <!-- Popup редактирования профиля -->
   <div class="popup popup_type_profile">
     <div class="popup__container">
       <button aria-label="Close" class="popup__button-close" type="button"></button>
@@ -65,6 +66,7 @@
       </form>
     </div>
   </div>
+  <!-- Popup добавления каринки -->
   <div class="popup popup_type_place">
     <div class="popup__container">
       <button aria-label="Close" class="popup__button-close" type="button"></button>
@@ -92,6 +94,7 @@
       </form>
     </div>
   </div>
+  <!-- Popup просмотра картинки -->
   <div class="popup popup_type_image">
     <div class="popup__container popup__container_type_image">
       <button aria-label="Close" class="popup__button-close" type="button"></button>
@@ -99,6 +102,33 @@
       <h2 class="popup__name"></h2>
     </div>
   </div>
+  <!-- Popup редактирования аватара -->
+  <div class="popup popup_type_avatar">
+    <div class="popup__container">
+      <button aria-label="Close" class="popup__button-close" type="button"></button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form popup__form_type_avatar" name="form-avatar" novalidate>
+        <input
+        id="input-avatar"
+        type="url"
+        name="avatar"
+        class="popup__input popup__input_type_link"
+        placeholder="Ссылка на аватар"
+        required>
+        <span id="input-avatar-error" class="popup__error"></span>
+        <button class="popup__button popup__button-submit" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <!-- Popup подтверждения действия -->
+  <div class="popup popup_type_delete">
+    <div class="popup__container">
+      <h2 class="popup__title">Вы уверенны?</h2>
+      <button class="popup__button popup__button-submit" type="submit">Да</button>
+      <button aria-label="Close" class="popup__button-close" type="button"></button>
+    </div>
+  </div>
+  <!-- template элемент -->
   <template class="template-card">
     <article class="element">
       <button class="element__basket"></button>

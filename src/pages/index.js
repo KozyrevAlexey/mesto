@@ -49,6 +49,7 @@ const cardsContainer = new Section({
 /** Найти кнопки открытия Popup */
 const popupOpenEdit = document.querySelector('.profile__edit-buton');
 const popupOpenAdd = document.querySelector('.profile__add-button');
+const popupOpenAvatar = document.querySelector('.profile__avatar')
 
 /**Получение формы профиля */
 const userInfo = new UserInfo({
@@ -71,16 +72,6 @@ popupOpenEdit.addEventListener('click', () => {
 });
 
 /**Функция создания Popup добавления карточки */
-// const popupFormAddCards = new PopupWithForm('.popup_type_place', {
-//   submitCallback: ({ link, title }) => {
-//     cardsContainer.addItem(createCard({
-//       name: title,
-//       link: link,
-//       alt: title,
-//     }))
-//   }
-// })
-
 const  popupFormAddCards = new PopupWithForm('.popup_type_place', {
   submitCallback: (data) => {
     api.addNewCard(data)
@@ -95,18 +86,24 @@ const  popupFormAddCards = new PopupWithForm('.popup_type_place', {
   }
 })
 
-
-
-
-
-
-
-
 /**Функция открытия Popup добавления карточки */
 popupOpenAdd.addEventListener('click', () => {
   popupFormAddCards.open();
   validatorForms['form-place'].clearValidationForm();
 });
+
+/**Функция создания Popup редактирования аватара */
+const popupFormAvatar = new PopupWithForm('.popup_type_avatar', {
+  submitCallback: (data) => {
+    userInfo.setAvatar(data);
+  }
+})
+
+/**Функция открытия Popup аватара */
+popupOpenAvatar.addEventListener('click', () => {
+  popupFormAvatar.open();
+  validatorForms['form-avatar'].clearValidationForm();
+})
 
 /**------------------Валидация---------------------- */
 
@@ -132,5 +129,5 @@ enableValidation(formValidationConfig);
 cardImagePopup.setEventListeners();
 popupFormProfile.setEventListeners();
 popupFormAddCards.setEventListeners();
-
+popupFormAvatar.setEventListeners();
 
