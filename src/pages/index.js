@@ -17,6 +17,7 @@ api.getInitialCards()
 .then(data => {
   cardsContainer.renderItems(data)
 })
+.catch((err) => alert(err))
 
 /**-------------Карточки с изображением---------------------- */
 
@@ -70,15 +71,36 @@ popupOpenEdit.addEventListener('click', () => {
 });
 
 /**Функция создания Popup добавления карточки */
-const popupFormAddCards = new PopupWithForm('.popup_type_place', {
-  submitCallback: ({ link, title }) => {
-    cardsContainer.addItem(createCard({
-      name: title,
-      link: link,
-      alt: title,
-    }))
+// const popupFormAddCards = new PopupWithForm('.popup_type_place', {
+//   submitCallback: ({ link, title }) => {
+//     cardsContainer.addItem(createCard({
+//       name: title,
+//       link: link,
+//       alt: title,
+//     }))
+//   }
+// })
+
+const  popupFormAddCards = new PopupWithForm('.popup_type_place', {
+  submitCallback: (data) => {
+    api.addNewCard(data)
+    .then((newCard) => {
+      cardsContainer.addItem(createCard({
+        name: newCard.name,
+        link: newCard.link,
+      }))
+    })
+    .catch((err) => alert(err))
+    console.log(data)
   }
 })
+
+
+
+
+
+
+
 
 /**Функция открытия Popup добавления карточки */
 popupOpenAdd.addEventListener('click', () => {

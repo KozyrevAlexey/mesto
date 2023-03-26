@@ -9,7 +9,7 @@ _checkResponse(res) {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Ошибка: ${res.status}`);
+  return Promise.reject(`Упс.... Что-то пошло не так! Ошибка: ${res.status}`);
 };
 
   /**Запросить данные с сервера */
@@ -19,6 +19,21 @@ _checkResponse(res) {
     })
     .then(res => this._checkResponse(res))
   }
+
+  /**Функция добавления новой карточки на сервер */
+addNewCard(data) {
+  return fetch(`${this._url}/cards`, {
+    method: 'POST',
+    headers: this._headers,
+    body: JSON.stringify({
+      name: data.name,
+      link: data.link,
+    }),
+  })
+  .then(res => this._checkResponse(res))
+};
 }
+
+
 
 export { Api };
