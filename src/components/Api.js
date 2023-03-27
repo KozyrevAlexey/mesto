@@ -2,6 +2,7 @@ class Api {
   constructor(config) {
     this._url = config.url;
     this._headers = config.headers;
+    this._authorization = config.headers['authorization'];
   }
 
   /**Проверить на ошибки */
@@ -15,7 +16,9 @@ _checkResponse(res) {
   /**Запросить данные с сервера */
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
-      headers: this._headers,
+      headers: {
+        authorization: this._authorization
+      },
     })
     .then(res => this._checkResponse(res))
   }
@@ -32,8 +35,42 @@ addNewCard(data) {
   })
   .then(res => this._checkResponse(res))
 };
+
+/**Функция получения данных пользователя с сервера*/
+getUserInfoApi() {
+  return fetch(`${this._url}/users/me`, {
+    headers: {
+      authorization: this._authorization
+    },
+  })
+  .then(res => this._checkResponse(res))
 }
 
+/**Функция передачи данных пользователя с сервера */
+setUserInfoApi(data) {
+  return fetch(`${this._url}/users/me`, {
+    method: 'PATCH',
+    headers: this._headers,
+    body: JSON.stringify({
+      name: data.name,
+      about: data.about,
+    }),
+  })
+  .then(res => this._checkResponse(res))
+}
 
+/**Функция передачи на сервер нового аватара */
+setUserAvatar(data) {
+  return fetch(`${this._url}/users/me/avatar`, {
+    method: 'PATCH',
+    headers: this._headers,
+    body: JSON.stringify({
+      avatar: data.avatar,
+    }),
+  })
+  .then(res => this._checkResponse(res))
+}
+
+}
 
 export { Api };

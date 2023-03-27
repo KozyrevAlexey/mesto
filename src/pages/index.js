@@ -12,12 +12,22 @@ import '../pages/index.css';
 /**----------------Api------------------------------ */
 const api = new Api(apiConfig);
 
-/**Отобразить карточки с сервера */
-api.getInitialCards()
+/**Отобразить полученные карточки с сервера */
+Promise.resolve(api.getInitialCards())
 .then(data => {
   cardsContainer.renderItems(data)
 })
 .catch((err) => alert(err))
+
+/**Отобразить полученные данные профиля и аватар с сервера */
+Promise.resolve(api.getUserInfoApi())
+.then((res) => {
+  userInfo.setUserAvatar(res);
+  userInfo.setUserInfo(res);
+  userInfo.getUserID(res._id);
+})
+.catch((err) => alert(err))
+
 
 /**-------------Карточки с изображением---------------------- */
 
@@ -41,9 +51,6 @@ const cardsContainer = new Section({
 }, '.elements'
 );
 
-/** Отобразить карточки на странице*/
-// cardsContainer.renderItems(initialCards);
-
 /**-------------Popup добавления и редактирования----------------- */
 
 /** Найти кнопки открытия Popup */
@@ -60,7 +67,11 @@ const userInfo = new UserInfo({
 /**Функция создания Popup редактировапния профиля */
 const popupFormProfile = new PopupWithForm('.popup_type_profile', {
   submitCallback: (data) => {
-    userInfo.setUserInfo(data);
+    api.setUserInfoApi(data)
+    .then((res) => {
+      userInfo.setUserInfo(res);
+    })
+    .catch((err) => alert(err))
   }
 })
 
@@ -82,7 +93,6 @@ const  popupFormAddCards = new PopupWithForm('.popup_type_place', {
       }))
     })
     .catch((err) => alert(err))
-    console.log(data)
   }
 })
 
@@ -95,7 +105,11 @@ popupOpenAdd.addEventListener('click', () => {
 /**Функция создания Popup редактирования аватара */
 const popupFormAvatar = new PopupWithForm('.popup_type_avatar', {
   submitCallback: (data) => {
-    userInfo.setAvatar(data);
+    api.setUserAvatar(data)
+    .then((res) => {
+      userInfo.setUserAvatar(res);
+    })
+    .catch((err) => alert(err))
   }
 })
 
