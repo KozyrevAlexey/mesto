@@ -67,11 +67,15 @@ const userInfo = new UserInfo({
 /**Функция создания Popup редактировапния профиля */
 const popupFormProfile = new PopupWithForm('.popup_type_profile', {
   submitCallback: (data) => {
+    popupFormProfile.renderPreloader(true, 'Загрузка...')
     api.setUserInfoApi(data)
     .then((res) => {
       userInfo.setUserInfo(res);
     })
     .catch((err) => alert(err))
+    .finally(() => {
+      popupFormProfile.renderPreloader(false);
+    })
   }
 })
 
@@ -85,6 +89,7 @@ popupOpenEdit.addEventListener('click', () => {
 /**Функция создания Popup добавления карточки */
 const  popupFormAddCards = new PopupWithForm('.popup_type_place', {
   submitCallback: (data) => {
+    popupFormAddCards.renderPreloader(true, 'Сохранение...')
     api.addNewCard(data)
     .then((newCard) => {
       cardsContainer.addItem(createCard({
@@ -93,6 +98,9 @@ const  popupFormAddCards = new PopupWithForm('.popup_type_place', {
       }))
     })
     .catch((err) => alert(err))
+    .finally(() => {
+      popupFormAddCards.renderPreloader(false);
+    })
   }
 })
 
@@ -105,11 +113,15 @@ popupOpenAdd.addEventListener('click', () => {
 /**Функция создания Popup редактирования аватара */
 const popupFormAvatar = new PopupWithForm('.popup_type_avatar', {
   submitCallback: (data) => {
+    popupFormAvatar.renderPreloader(true, 'Загрузка...')
     api.setUserAvatar(data)
     .then((res) => {
       userInfo.setUserAvatar(res);
     })
     .catch((err) => alert(err))
+    .finally(() => {
+      popupFormAvatar.renderPreloader(false);
+    })
   }
 })
 
