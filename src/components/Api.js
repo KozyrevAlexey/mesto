@@ -71,6 +71,33 @@ setUserAvatar(data) {
   .then(res => this._checkResponse(res))
 }
 
+/**Функция удаления карточки с сервера */
+deleteCard(cardId) {
+  return fetch(`${this._url}/cards/${cardId}`, {
+    method: 'DELETE',
+    headers: this._headers,
+  })
+  .then(res => this._checkResponse(res))
+}
+
+/**Функция отправки лайка на сервер */
+putCardLike(cardId) {
+  return fetch(`${this._url}/cards/${cardId}/likes`, {
+    metod: 'PUT',
+    headers: this._headers,
+  })
+  .then(res => this._checkResponse(res))
+}
+
+/**Функция удаления лайка с сервера */
+deleteCardLike(cardId) {
+  return fetch(`${this._url}/cards/${cardId}/likes`, {
+    metod: 'DELETE',
+    headers: this._headers,
+  })
+  .then(res => this._checkResponse(res))
+}
+
 }
 
 export { Api };
