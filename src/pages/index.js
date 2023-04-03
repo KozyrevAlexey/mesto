@@ -21,7 +21,7 @@ Promise.all([api.getUserInfoApi(), api.getInitialCards()])
   userInfo.setUserAvatar(resUser);
   cardsContainer.renderItems(resCard, userCurrentId)
 })
-// .catch((err) => alert(err))
+.catch((err) => alert(err))
 
 /**-------------Карточки с изображением---------------------- */
 
@@ -41,12 +41,11 @@ const createCard = (data, user) => {
   },
 
   handleCardLike: (cardId) => {
-    console.log(cardId)
     api.putCardLike(cardId)
     .then((res) => {
       card.renderCardLike(res);
     })
-    // .catch((err) => alert(err))
+    .catch((err) => alert(err))
   },
 
   handleCardDeleteLike: (cardId) => {
@@ -54,7 +53,7 @@ const createCard = (data, user) => {
     .then((res) => {
       card.renderCardLike(res)
     })
-    // .catch((err) => alert(err))
+    .catch((err) => alert(err))
   }
 
 
@@ -95,7 +94,7 @@ const popupFormProfile = new PopupWithForm('.popup_type_profile', {
       userInfo.setUserInfo(res);
       popupFormProfile.close();
     })
-    // .catch((err) => alert(err))
+    .catch((err) => alert(err))
     .finally(() => {
       popupFormProfile.renderPreloader(false);
     })

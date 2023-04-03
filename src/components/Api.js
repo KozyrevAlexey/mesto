@@ -83,7 +83,7 @@ deleteCard(cardId) {
 /**Функция отправки лайка на сервер */
 putCardLike(cardId) {
   return fetch(`${this._url}/cards/${cardId}/likes`, {
-    metod: 'PUT',
+    method: 'PUT',
     headers: this._headers,
   })
   .then(res => this._checkResponse(res))
@@ -92,7 +92,7 @@ putCardLike(cardId) {
 /**Функция удаления лайка с сервера */
 deleteCardLike(cardId) {
   return fetch(`${this._url}/cards/${cardId}/likes`, {
-    metod: 'DELETE',
+    method: 'DELETE',
     headers: this._headers,
   })
   .then(res => this._checkResponse(res))
