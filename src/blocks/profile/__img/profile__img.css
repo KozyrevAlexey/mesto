@@ -1,0 +1,14 @@
+.profile__img {
+height: 100%;
+margin: 0;
+border-radius: inherit;
+object-fit: cover;
+object-position: center center;
+width: 100%;
+transition: opacity 0.5s ease-in-out;
+}
+
+.profile__img:hover {
+  cursor: pointer;
+  opacity: 0.2;
+}
