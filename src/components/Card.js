@@ -79,10 +79,15 @@ class Card {
     }
   }
 
+  deleteCard() {
+    this.cardElement.remove();
+    this.cardElement = null;
+  };
+
    /**Слушатели событий */
   _setEventListeners() {
     this._cardElementLike.addEventListener('click', () => this.togleLike());
-    this._cardElementDel.addEventListener('click', () => this._handleCardDelete(this));
+    this._cardElementDel.addEventListener('click', () => this._handleCardDelete(this, this.idCard));
     this._cardElementPhoto.addEventListener('click', () => this._handleCardClick());
   };
 };
