@@ -32,8 +32,8 @@ const cardImagePopup = new PopupWithImage('.popup_type_image');
 const createCard = (data, user) => {
   const card = new Card({data: data, userId: user, templateSelector: '.template-card',
 
-  handleCardDelete: (card) => {
-    popupFormDelete.open(card);
+  handleCardDelete: (cardID, cardElement) => {
+    popupFormDelete.open(cardID, cardElement);
   },
 
   handleCardClick: () => {
@@ -117,7 +117,7 @@ const  popupFormAddCards = new PopupWithForm('.popup_type_place', {
       cardsContainer.prependItem(createCard(newCard, userCurrentId));
       popupFormAddCards.close();
     })
-    // .catch((err) => alert(err))
+    .catch((err) => alert(err))
     .finally(() => {
       popupFormAddCards.renderPreloader(false);
     })
@@ -139,7 +139,7 @@ const popupFormAvatar = new PopupWithForm('.popup_type_avatar', {
       userInfo.setUserAvatar(resUser);
       popupFormAvatar.close();
     })
-    // .catch((err) => alert(err))
+    .catch((err) => alert(err))
     .finally(() => {
       popupFormAvatar.renderPreloader(false);
     })
@@ -154,17 +154,16 @@ popupOpenAvatar.addEventListener('click', () => {
 
 /**Функция создания Popup подтверждения удаления */
 const popupFormDelete = new PopupWithRemoval('.popup_type_delete', {
-  submitCallback: ({id, card}) => {
+  submitCallback: (id, card) => {
     popupFormDelete.renderPreloader(true, 'Удаление...');
     api.deleteCard(id)
     .then(() => {
-      card.remove();
-      card = null;
+      card.deleteCard();
       popupFormDelete.close();
     })
-    // .catch((err) => alert(err))
+    .catch((err) => alert(err))
     .finally(() => {
-      popupFormAvatar.renderPreloader(false);
+      popupFormDelete.renderPreloader(false);
     })
   }
 })

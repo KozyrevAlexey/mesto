@@ -31,6 +31,17 @@ class PopupWithForm extends Popup {
     super.close();
   }
 
+  /**Функция отображения Preloader */
+  renderPreloader(loading, displayText) {
+    if (!this._buttonSubmit) return;
+    if (loading) {
+      this.defaulText = this._buttonSubmit.textContent;
+      this._buttonSubmit.textContent = displayText;
+    } else {
+      this._buttonSubmit.textContent = this.defaulText;
+    }
+  }
+
   /**Слушатели */
   setEventListeners() {
     super.setEventListeners();

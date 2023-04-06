@@ -2,7 +2,6 @@ export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
     this._buttonClose = this._popup.querySelector('.popup__button-close');
-    this._buttonSubmit = this._popup.querySelector('.popup__button-submit');
   }
 
   /**Функция открытия Popup */
@@ -29,17 +28,6 @@ export default class Popup {
     if (evt.target === evt.currentTarget) {
       this.close();
     };
-  }
-
-  /**Функция отображения Preloader */
-  renderPreloader(loading, displayText) {
-    if (!this._buttonSubmit) return;
-    if (loading) {
-      this.defaulText = this._buttonSubmit.textContent;
-      this._buttonSubmit.textContent = displayText;
-    } else {
-      this._buttonSubmit.textContent = this.defaulText;
-    }
   }
 
   /**Слушатели */
